@@ -1,0 +1,109 @@
+<section id="testimonials" class="testimonials">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title" data-aos="fade-up-left">
+          <h2>Ils parlent de nous </h2>
+          <p>Ils témoignent du rapport qualité-prix de nos produits et services.</p>
+        </div>
+
+        <div class="swiper swiper-initialized swiper-horizontal swiper-backface-hidden aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper-wrapper" id="swiper-wrapper-4912477949812e9a" aria-live="off" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+
+                {% for k,testimonial in data.testimonials %}
+                    <div class="swiper-slide" role="group" aria-label="{{ k+1 }} / 3" style="width: 345.333px; margin-right: 40px;" data-swiper-slide-index="{{ k }}" data-aos="fade-up-right">
+                        <div class="testimonial-wrap">
+                            <div class="testimonial-item">
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ asset('media/pictures/'~testimonial.picture) }}" class="testimonial-img flex-shrink-0" alt="">
+                                    <div>
+                                    <h3>{{testimonial.name}}</h3>
+                                    <h4>{{ testimonial.grade ~" "~testimonial.entreprise.name }}</h4>
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    </div>
+                                    </div>
+                                </div>
+                                <p class="justify-text">
+                                    <i class="bi bi-quote quote-icon-left"></i>
+                                    {{ testimonial.description }}
+                                    <i class="bi bi-quote quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <!--
+                    <div class="swiper-slide" role="group" aria-label="1 / 3" style="width: 345.333px; margin-right: 40px;" data-swiper-slide-index="0" data-aos="fade-up-right">
+                        <div class="testimonial-wrap">
+                            <div class="testimonial-item">
+                                <div class="d-flex align-items-center">
+                                    <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img flex-shrink-0" alt="">
+                                    <div>
+                                    <h3>Yusuf Heri</h3>
+                                    <h4>Ceo &amp; Founder ENYWORK</h4>
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    </div>
+                                    </div>
+                                </div>
+                                <p class="justify-text">
+                                    <i class="bi bi-quote quote-icon-left"></i>
+                                    SEC nous offre les imprimantes evolis à un prix abordables. Et on manque jamais les intrants quand nous en avons besoin.
+                                    <i class="bi bi-quote quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide" role="group" aria-label="2 / 3" style="width: 345.333px; margin-right: 40px;" data-swiper-slide-index="1" data-aos="fade-up">
+                        <div class="testimonial-wrap">
+                            <div class="testimonial-item">
+                            <div class="d-flex align-items-center">
+                                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img flex-shrink-0" alt="">
+                                <div>
+                                <h3>Claudine MBANGALA</h3>
+                                <h4>IT OCC</h4>
+                                <div class="stars">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                </div>
+                                </div>
+                            </div>
+                            <p class="justify-text">
+                                <i class="bi bi-quote quote-icon-left"></i>
+                                Le prix et le délai de livraison sont les qualités qui leur différencient des autres. Avec SEC, Une équipe des spécialistes est est toujours disponibles.
+                                <i class="bi bi-quote quote-icon-right"></i>
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide" role="group" aria-label="3 / 3" style="width: 345.333px; margin-right: 40px;" data-swiper-slide-index="2" data-aos="fade-up-left">
+                        <div class="testimonial-wrap">
+                            <div class="testimonial-item">
+                            <div class="d-flex align-items-center">
+                                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img flex-shrink-0" alt="">
+                                <div>
+                                <h3>Jena Karlis</h3>
+                                <h4>Store Owner</h4>
+                                <div class="stars">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                </div>
+                                </div>
+                            </div>
+                            <p class="justify-text">
+                                <i class="bi bi-quote quote-icon-left"></i>
+                                Notre partenaire de vie. Nous sommes sommes satisfaits de services offerts en fourniture des matériels informatique et bien d'autres.
+                                <i class="bi bi-quote quote-icon-right"></i>
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                -->
+            
+            </div>
+            
+        </div>
+
+      </div>
+    </section>

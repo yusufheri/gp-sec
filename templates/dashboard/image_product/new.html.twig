@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ImageProduct{% endblock %}
+
+{% block body %}
+    <h1>Create new ImageProduct</h1>
+
+    {{ include('dashboard/image_product/_form.html.twig') }}
+
+    <a href="{{ path('app_dashboard_image_product_index') }}">back to list</a>
+{% endblock %}

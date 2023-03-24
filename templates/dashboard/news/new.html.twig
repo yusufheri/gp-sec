@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New News{% endblock %}
+
+{% block body %}
+    <div class="container u-margin-top-small">
+        <div class="row">
+            <div class="col-md">
+                <h1>Create new News</h1>
+
+                {{ include('dashboard/news/_form.html.twig') }}
+
+                <a href="{{ path('app_dashboard_news_index') }}">back to list</a>
+            
+            </div>
+        </div>
+    </div>
+{% endblock %}

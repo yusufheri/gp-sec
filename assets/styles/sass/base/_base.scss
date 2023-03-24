@@ -1,0 +1,227 @@
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+    font-family:  "Rawelay", "Poppins", sans-serif;
+    color: #444444;
+  }
+  
+  a {
+    color: $color-primary;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: $color-primary-light;
+    text-decoration: none;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Poppins", "Raleway", sans-serif;
+  }
+
+
+section {
+    padding: 0 0 40px 0;
+  }
+  
+  .section-bg {
+    background-color: white;
+  }
+  
+  .section-title {
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+  
+  .section-title h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    padding-bottom: 20px;
+    position: relative;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .section-title h2::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: $color-primary;
+    bottom: 0;
+    left: calc(50% - 25px);
+  }
+  
+  .section-title p {
+    margin-bottom: 0;
+  }
+
+  .section-title p span {
+    color: $color-primary;
+    font-weight: 700;
+  }
+
+
+  /*--------------------------------------------------------------
+# Breadcrumbs
+--------------------------------------------------------------*/
+.breadcrumbs {
+  padding: 20px 0 20px 0;
+  background: #f7f7f7;
+  border-bottom: 1px solid #ededed;
+  margin-bottom: 40px;
+}
+
+.breadcrumbs h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #545454;
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0 0 5px 0;
+  margin: 0;
+  font-size: 14px;
+}
+
+.breadcrumbs ol li+li {
+  padding-left: 10px;
+}
+
+.breadcrumbs ol li+li::before {
+  display: inline-block;
+  padding-right: 10px;
+  color: #6e6e6e;
+  content: "/";
+}
+
+/*--------------------------------------------------------------
+# Featured
+--------------------------------------------------------------*/
+.featured {
+  position: relative;
+  z-index: 2;
+}
+
+.featured .icon-box {
+  padding: 40px 30px;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  background: #fff;
+  transition: all ease-in-out 0.3s;
+  height: 100%;
+}
+
+.featured .icon-box i {
+  color: $color-primary;
+  font-size: 42px;
+  margin-bottom: 15px;
+  display: block;
+  line-height: 0;
+}
+
+.featured .icon-box h3 {
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.featured .icon-box h3 a {
+  color: #545454;
+  transition: 0.3s;
+}
+
+.featured .icon-box p {
+  color: #545454;
+  line-height: 24px;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.featured .icon-box:hover {
+  background: $color-primary;
+}
+
+.featured .icon-box:hover i,
+.featured .icon-box:hover h3 a,
+.featured .icon-box:hover p {
+  color: #fff;
+}
+
+
+
+
+/*--------------------------------------------------------------
+# Our Skills
+--------------------------------------------------------------*/
+.skills .content h3 {
+  font-weight: 700;
+  font-size: 26px;
+  color: #545454;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 20px;
+}
+
+.skills .content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.skills .content ul li {
+  padding-bottom: 10px;
+}
+
+.skills .content ul i {
+  font-size: 20px;
+  padding-right: 4px;
+  color: $color-primary;
+}
+
+.skills .content p:last-child {
+  margin-bottom: 0;
+}
+
+.skills .progress {
+  height: 62px;
+  display: block;
+  background: none;
+  border-radius: 0;
+}
+
+.skills .progress .skill {
+  padding: 0;
+  margin: 0 0 6px 0;
+  text-transform: uppercase;
+  display: block;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  color: #545454;
+}
+
+.skills .progress .skill .val {
+  float: right;
+  font-style: normal;
+}
+
+.skills .progress-bar-wrap {
+  background: #e0e0e0;
+}
+
+.skills .progress-bar {
+  width: 1px;
+  height: 10px;
+  transition: 0.9s;
+  background-color: $color-primary;
+}
+

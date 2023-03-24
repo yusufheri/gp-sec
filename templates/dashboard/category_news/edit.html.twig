@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CategoryNews{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <h1>Edit CategoryNews</h1>
+
+                {{ include('dashboard/category_news/_form.html.twig', {'button_label': 'Update'}) }}
+
+                <a href="{{ path('app_dashboard_category_news_index') }}" class="btn btn--blue u-margin-bottom-small">back to list</a>
+
+                {{ include('dashboard/category_news/_delete_form.html.twig') }}            
+            </div>
+        </div>
+    </div>
+{% endblock %}

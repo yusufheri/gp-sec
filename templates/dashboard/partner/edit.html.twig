@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Partner{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <h1>Edit Partner</h1>
+
+                {{ include('dashboard/partner/_form.html.twig', {'button_label': 'Enregistrer les modifications'}) }}
+
+                <a href="{{ path('app_dashboard_partner_index') }}" class="btn btn--blue">back to list</a>
+
+                {{ include('dashboard/partner/_delete_form.html.twig') }}            
+            </div>
+        </div>
+    </div>
+{% endblock %}

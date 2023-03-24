@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Client{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <h1>NouveauClient</h1>
+
+                {{ include('dashboard/client/_form.html.twig') }}
+
+                <a href="{{ path('app_dashboard_client_index') }}" class="u-margin-top-small u-margin-bottom-small ">back to list</a>            
+            </div>
+        </div>
+    </div>
+{% endblock %}

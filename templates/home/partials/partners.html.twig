@@ -1,0 +1,23 @@
+
+{% set partners = ["Suprema.inc", "Screen Check", "CardPresso", "Grandstream", "NEC"] %}
+<!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients" style="margin-top: -20px;padding: 10px !important;">
+      <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+
+        <!--<div class="section-title">
+         <h2>Nos Partenaires</h2>
+            <p>
+                Outre Evolis, nous représentons et distribuons des produits fabriqués d'autres grandes entreprises au monde
+            </p>
+        </div>-->
+
+        <div class="clients-slider swiper">
+          <div class="swiper-wrapper align-items-center">
+            {% for partner in data.partners %}
+                <div class="swiper-slide"><img src="{{ asset('media/pictures/'~partner.picture) }}" class="img-fluid" alt="{{ partner.name }}"></div>
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Clients Section -->

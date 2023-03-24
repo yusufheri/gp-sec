@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CategoryNews index{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <h1>Catégorie des News</h1>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for category_news in category_news %}
+                        <tr>
+                            <td>{{ category_news.id }}</td>
+                            <td>{{ category_news.name }}</td>
+                            <td>
+                                <a href="{{ path('app_dashboard_category_news_show', {'id': category_news.id}) }}" class="btn btn--red"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('app_dashboard_category_news_edit', {'id': category_news.id}) }}" class="btn btn--blue"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <a href="{{ path('app_dashboard_category_news_new') }}" class="btn btn--red u-margin-bottom-small"><i class="fa fa-plus"></i> Nouvelle</a>            
+            </div>
+        </div>
+    </div>
+{% endblock %}

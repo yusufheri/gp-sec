@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Testimonial{% endblock %}
+
+{% block body %}
+    <div class="container u-margin-top-small">
+        <div class="row">
+            <div class="col-md">
+                <h1>Create new Testimonial</h1>
+
+                {{ include('dashboard/testimonial/_form.html.twig') }}
+
+                <a href="{{ path('app_dashboard_testimonial_index') }}" class="btn  btn--blue u-margin-top-small">back to list</a>            
+            </div>
+        </div>
+    </div>
+{% endblock %}

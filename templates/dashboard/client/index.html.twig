@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Client index{% endblock %}
+
+{% block body %}
+
+    <div class="container u-margin-top-small">
+        <div class="row">
+            <div class="col-md">
+                <h1>Nos Clients ({{ clients|length }})</h1> <hr>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Name</th>
+                            <th>Website</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for k, client in clients %}
+                        <tr>
+                            <td>{{ k+1 }}</td>
+                            <td>
+                                <div class="d-flex">
+                                    <img src="{{ asset('media/pictures/'~client.picture )|imagine_filter('my_thumb') }}" class="img-fluid rounded" alt="{{ client.name }}" srcset="">
+                                    {{ client.name }}
+                                </div>
+                            </td>
+                            <td>{{ client.website }}</td>
+                            <td>{{ client.email }}</td>
+                            <td>{{ client.phone }}</td>
+                            <td>
+                                <a href="{{ path('app_dashboard_client_show', {'id': client.id}) }}" class="btn btn--red"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('app_dashboard_client_edit', {'id': client.id}) }}" class="btn btn--blue"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="8">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <a href="{{ path('app_dashboard_client_new') }}" class="btn btn--red u-margin-bottom-small"><i class="fa fa-plus"></i> Nouveau client</a>            
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CategoryNews{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <h1>CategoryNews</h1>
+
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ category_news.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ category_news.name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <a href="{{ path('app_dashboard_category_news_index') }}" class="btn btn--blue" >back to list</a>
+
+                <a href="{{ path('app_dashboard_category_news_edit', {'id': category_news.id}) }}" class="btn btn--red">edit</a>
+
+                {{ include('dashboard/category_news/_delete_form.html.twig') }}            
+            </div>
+        </div>
+    </div>
+{% endblock %}

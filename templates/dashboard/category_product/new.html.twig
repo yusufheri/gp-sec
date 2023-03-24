@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CategoryProduct{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <h1>Nouvelle catégorie</h1>
+
+            {{ include('dashboard/category_product/_form.html.twig') }}
+
+            <a href="{{ path('app_dashboard_category_product_index') }}">back to list</a>        
+        </div>
+    </div>
+{% endblock %}

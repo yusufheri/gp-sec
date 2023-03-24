@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CategoryProduct index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <h1 class="u-margin-top-small">Catégorie Produit</h1><hr>
+
+            <table class="table table-stripped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for category_product in category_products %}
+                    <tr>
+                        <td>{{ category_product.id }}</td>
+                        <td>{{ category_product.name }}</td>
+                        <td>{{ category_product.description }}</td>
+                        <td>
+                            <a  class="btn btn--red" href="{{ path('app_dashboard_category_product_show', {'id': category_product.id}) }}"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn--red"  href="{{ path('app_dashboard_category_product_edit', {'id': category_product.id}) }}"><i class="fa fa-edit"></i></a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>       
+        </div>
+    </div>
+
+    <a href="{{ path('app_dashboard_category_product_new') }}" class="btn btn--red u-margin-bottom-small" ><i class="fa fa-plus"></i> Nouvelle</a>
+{% endblock %}

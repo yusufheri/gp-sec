@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue chez Groupe SEC{% endblock %}
+
+{% block body %}
+
+
+{% include 'home/partials/hero.html.twig' %}
+
+<main id="main">
+    <!-- ======= Featured Section ======= -->
+    {% include 'home/partials/partners.html.twig' %}
+    <!-- End Featured Section -->
+
+    <!-- ======= Featured Section ======= -->
+    {% include 'home/partials/products.html.twig' %}
+    <!-- End Featured Section -->
+
+    <!-- ======= About Section ======= -->
+    {% include 'home/partials/about.html.twig' %}
+    <!-- End About Section -->
+
+    <!-- ======= Services Section ======= -->
+    {% include 'home/partials/services.html.twig' %}
+    <!-- End Services Section -->
+
+     <!-- ======= Services Testimonial ======= -->
+    {% include 'home/partials/testimonial.html.twig' %}
+    <!-- End Testimonial Section -->
+
+     <!-- ======= Services Testimonial ======= -->
+    {% include 'home/partials/blogPost.html.twig' %}
+    <!-- End Testimonial Section -->
+</main>
+
+{% endblock %}

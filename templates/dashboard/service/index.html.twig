@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Service index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <h1 class="u-margin-top-small">Nos services ({{ services|length }})</h1> <hr>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Services</th>
+                            <th>Description</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for k, service in services %}
+                        <tr>
+                            <td>{{ k+1 }}</td>
+                            <td>{{ service.name }}</td>
+                            <td>{{ service.description }}</td>
+                            <td>{{ service.picture }}</td>
+                            <td>
+                                <a href="{{ path('app_dashboard_service_show', {'id': service.id}) }}" class="btn btn--red "><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('app_dashboard_service_edit', {'id': service.id}) }}" class="btn btn--blue "><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <a href="{{ path('app_dashboard_service_new') }}" class="btn btn--red u-margin-bottom-small"><i class="fa fa-plus"></i> Nouveau service</a>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Partner index{% endblock %}
+
+{% block body %}
+    <div class="container u-margin-top-small u-bgcolor-container">
+        <div class="row">
+            <div class="col-md">
+                <h1 class="u-margin-top-small">Nos Partenaires ({{ partners|length }})</h1>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th width="50%">Partenaires</th>
+                            <th>Description</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for k, partner in partners %}
+                        <tr>
+                            <td>{{ k + 1 }}</td>
+                            <td>
+                                <div class="d-flex">
+                                    <img src="{{ asset('media/pictures/'~partner.picture )|imagine_filter('my_thumb') }}" class="img-fluid" alt="{{ partner.name }}" srcset="">
+                                    {{ partner.name }}
+                                </div>
+                            </td>
+                            <td>{{ partner.description }}</td>
+                            <td>
+                                <a href="{{ path('app_dashboard_partner_show', {'id': partner.id}) }}" class="btn btn--blue"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('app_dashboard_partner_edit', {'id': partner.id}) }}" class="btn btn--red"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <a href="{{ path('app_dashboard_partner_new') }}" class="btn btn--red u-margin-bottom-small"><i class="fa fa-plus"></i> Nouveau partenaire</a>            
+            </div>
+        </div>
+    </div>
+{% endblock %}

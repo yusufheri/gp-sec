@@ -1,0 +1,110 @@
+<!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/dashboard">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Sites touristiques</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{{ path('app_dashboard_site') }}">
+              <i class="bi bi-circle"></i><span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ path('app_dashboard_site_new') }}">
+              <i class="bi bi-circle"></i><span>Nouveau</span>
+            </a>
+          </li>
+        </ul>
+      </li> 
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#agences-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Offres de voyage</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="agences-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{{ path('app_dashboard_offres_agence') }}">
+              <i class="bi bi-circle"></i><span>Liste des offres</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ path('app_dashboard_agence') }}">
+              <i class="bi bi-circle"></i><span>Liste des agences</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#hotels-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Réservation Hôtel</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="hotels-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{{ path('app_dashboard_hotel') }}">
+              <i class="bi bi-circle"></i><span>Liste des Hôtels</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ path('app_dashboard_hotel_new') }}">
+              <i class="bi bi-circle"></i><span>Nouvel enregistrement</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+       <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#agregateurs-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Annonceurs</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="agregateurs-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{{ path('app_dashboard_abonne') }}">
+              <i class="bi bi-circle"></i><span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ path('app_dashboard_abonne_create') }}">
+              <i class="bi bi-circle"></i><span>Nouveau</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-parametres" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Paramètres</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-parametres" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{{ path('app_dashboard_category_site') }}">
+              <i class="bi bi-circle"></i><span>Categories</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ path('app_dashboard_province') }}">
+              <i class="bi bi-circle"></i><span>Provinces</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ path('app_dashboard_tag_site_index') }}">
+              <i class="bi bi-circle"></i><span>Tag</span>
+            </a>
+          </li>
+        </ul>
+      </li> 
+
+    </ul>
+
+  </aside><!-- End Sidebar-->

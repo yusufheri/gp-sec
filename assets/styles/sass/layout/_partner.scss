@@ -1,0 +1,31 @@
+/*--------------------------------------------------------------
+# Our Clients
+--------------------------------------------------------------*/
+.clients .swiper-pagination {
+    margin-top: 20px;
+    position: relative;
+  }
+  
+  .clients .swiper-pagination .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    opacity: 1;
+    border: 1px solid $color-primary;
+  }
+  
+  .clients .swiper-pagination .swiper-pagination-bullet-active {
+    background-color: $color-primary;
+  }
+  
+  .clients .swiper-slide img {
+    opacity: 0.5;
+    transition: 0.3s;
+    filter: grayscale(100);
+  }
+  
+  .clients .swiper-slide img:hover {
+    filter: none;
+    opacity: 1;
+  }
+  

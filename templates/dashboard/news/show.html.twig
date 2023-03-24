@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}News{% endblock %}
+
+{% block body %}
+    <h1>News</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ news.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ news.name }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ news.updatedAt ? news.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Picture</th>
+                <td>{{ news.picture }}</td>
+            </tr>
+            <tr>
+                <th>PubliedAt</th>
+                <td>{{ news.publiedAt ? news.publiedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ news.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_dashboard_news_index') }}">back to list</a>
+
+    <a href="{{ path('app_dashboard_news_edit', {'id': news.id}) }}">edit</a>
+
+    {{ include('dashboard/news/_delete_form.html.twig') }}
+{% endblock %}

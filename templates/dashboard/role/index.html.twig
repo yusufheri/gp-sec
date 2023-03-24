@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Role index{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <h1>Droit d'accès ({{ roles|length }})</h1>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for k,role in roles %}
+                        <tr>
+                            <td>{{ k+1 }}</td>
+                            <td>{{ role.name }}</td>
+                            <td>{{ role.description }}</td>
+                            <td>
+                                <a href="{{ path('app_dashboard_role_show', {'id': role.id}) }}" class="btn btn--red"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('app_dashboard_role_edit', {'id': role.id}) }}" class="btn btn--blue"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="4">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <a href="{{ path('app_dashboard_role_new') }}" class="btn btn--red u-margin-bottom-small"><i class="fa fa-plus"></i> Nouveau Rôle</a>            
+            </div>
+        </div>
+    </div>
+{% endblock %}

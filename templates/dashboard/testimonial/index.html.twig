@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Testimonial index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <h1>Témoignages de nos clients</h1>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Name</th>
+                            <th>Grade</th>
+                            <th>Description</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for testimonial in testimonials %}
+                        <tr>
+                            <td>{{ testimonial.id }}</td>
+                            <td>
+                                <div>
+                                     <img src="{{ asset('media/pictures/'~testimonial.picture )|imagine_filter('my_thumb') }}" class="img-fluid rounded" alt="{{ testimonial.name }}" srcset="">
+                                    {{ testimonial.name }}
+                                </div>
+                            </td>
+                            <td>{{ testimonial.grade }}</td>
+                            <td>{{ testimonial.description }}</td>
+                            <td>
+                                <a href="{{ path('app_dashboard_testimonial_show', {'id': testimonial.id}) }}" class="btn btn--red"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('app_dashboard_testimonial_edit', {'id': testimonial.id}) }}" class="btn btn--blue"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <a href="{{ path('app_dashboard_testimonial_new') }}" class="btn btn--red u-margin-bottom-small"><i class="fa fa-save"></i> Create new</a>            
+            </div>
+        </div>
+    </div>
+{% endblock %}
