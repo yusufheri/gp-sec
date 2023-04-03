@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pays index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <h1>Pays </h1>
+
+                <table class="table table-stripped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for pay in pays %}
+                        <tr>
+                            <td>{{ pay.id }}</td>
+                            <td>{{ pay.name }}</td>
+                            <td>
+                                <a href="{{ path('app_dashboard_pays_show', {'id': pay.id}) }}" class="btn btn--red"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('app_dashboard_pays_edit', {'id': pay.id}) }}" class="btn btn--blue"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <a href="{{ path('app_dashboard_pays_new') }}" class="btn btn--red u-margin-bottom-small"><i class="fa fa-plus"></i> Nouveau</a>            
+            </div>
+        </div>
+    </div>
+{% endblock %}

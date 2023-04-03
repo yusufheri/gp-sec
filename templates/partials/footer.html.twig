@@ -6,10 +6,10 @@
         <div class="row">
           <div class="col-lg-6">
             <h4>Newsletter</h4>
-            <p>Pour être informé de toutes nos offres et actualité, abonnez-vous à notre newsletter</p>
+            <p>Pour être informé de toutes nos offres et actualités, abonnez-vous à notre Newsletter</p>
           </div>
           <div class="col-lg-6">
-            <form action="" method="post">
+            <form action="/subscriber-newsletters" method="post" name="form_newsletter">
               <input type="email" name="email"><input type="submit" value="Abonnez-vous">
             </form>
           </div>
@@ -24,12 +24,13 @@
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Liens utiles</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ path('app_home') }}">GP-SEC</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">A propos de nous</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ path('app_service') }}">Services</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Produits</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Actualités</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{{ path('app_dashboard_home') }}">Admin</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ path('app_news') }}">Actualités</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ path('app_contact_us') }}">Contactez-nous</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ path('app_login') }}">Admin</a></li>
             </ul>
           </div>
 
@@ -74,7 +75,7 @@
       <div class="copyright">
         &copy; Copyright <strong><span>GP-SEC</span></strong>. Tous les droits réservés
       </div>
-      <div class="credits">Designed by <a href="https://enywork.com/">ENYWORK</a>
+      <div class="credits">Designed by <a href="https://enywork.com/" target="_blank">ENYWORK</a>
       </div>
     </div>
   </footer><!-- End Footer -->

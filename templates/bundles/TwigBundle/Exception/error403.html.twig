@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Page non trouvée: Erreur 403{% endblock %}
+
+{% block body %}
+    <div class="container exception-page">
+        <h1>Alors ! Vous essayez de bousiller le site web ?</h1>
+        <div class="alert alert-danger">
+            <p><strong>Dommage </strong> vous n'avez pas le droit d'accéder à cette ressource 😎!!</p>
+            <p>{{ exception.message }}</p>
+        </div>
+       
+        <a href="{{ path('app_login') }}" class="btn btn--red">👈Retour à la page d'authentification</a>
+    </div>
+    
+{% endblock %}

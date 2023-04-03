@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos services{% endblock %}
+
+{% block body %}
+<!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="{{ path('app_home') }}">Page d'accueil</a></li>
+          <li>Services</li>
+        </ol>
+        <h2>Nos Services</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+     <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+      <div class="container">
+
+        <div class="row">
+          
+
+          {% for service in data %}
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
+                <div class="icon-box">
+                  <div class="icon"><i class="bx bx-arch"></i></div>
+                  <h4><a href="#">{{ service.name }}</a></h4>
+                  <p class="justify-text">{{ service.description }}</p>
+                </div>
+              </div>
+          {% endfor %}
+
+          
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+{% endblock %}

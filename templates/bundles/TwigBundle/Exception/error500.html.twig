@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Page non trouvée: Erreur 500{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
+            <h1>500</h1>
+            <h2>Cette ressource n'a pas été trouvée, 😔</h2>
+            <a class="btn btn--red" href="{{ path('app_home') }}"> Page d'accueil</a>
+        </section>
+
+    </div>
+{% endblock %}
