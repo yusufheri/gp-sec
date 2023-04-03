@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Page non trouvée: Erreur 404{% endblock %}
+
+{% block body %}
+    <div class="container exception-page" data->
+        <section class="section d-flex flex-column align-items-center justify-content-center">
+            <h1>404</h1>
+            <h2>Cette ressource semble  n'être pas  disponible, désolé</h2>
+            <a class="btn btn--red" href="{{ path('app_home') }}"> Page d'accueil</a>
+        </section>
+    </div>    
+{% endblock %}

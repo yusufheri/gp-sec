@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devis index{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <h1>Devis</h1><hr>
+
+            <table class="table table-stripped">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Reçu le</th>
+                        <th>Noms</th>
+                        <th>Email</th>
+                        <th>Ville</th>
+                        <th>Description</th>
+                        <th width="15%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for devi in devis %}
+                    <tr>
+                        <td>{{ devi.id }}</td>
+                        <td>{{ devi.createdAt ? devi.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ devi.name|capitalize }} {{ devi.lastname|capitalize }}</td>
+                        <td>{{ devi.email|lower }}</td>
+                        <td>{{ devi.ville|capitalize }} / {{ devi.pays.name }}</td>
+                        <td>{{ devi.description|extractText(75) }}</td>
+                        <td>
+                            <a href="{{ path('app_dashboard_devis_show', {'id': devi.id}) }}" class="btn btn--blue"><i class="fa fa-eye"></i> Voir plus</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="11">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Pays{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <h1>Create new Pays</h1>
+
+                {{ include('dashboard/pays/_form.html.twig') }}
+
+                <a href="{{ path('app_dashboard_pays_index') }}" class="btn btn--white u-margin-bottom-small">back to list</a>            
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}A propos de nous{% endblock %}
+
+{% block body %}
+<!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+
+    <ol>
+        <li><a href="{{ path('app_home') }}">Page d'accueil</a></li>
+        <li>A propos de nous</li>
+    </ol>
+    <h2>Qui sommes-nous ?</h2>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6"  data-aos="fade-up-left">
+            <img src="assets/img/about.jpg" class="img-fluid u-margin-top-small" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 content"  data-aos="fade-up-right">
+            <h3 class="u-margin-top-small">Software Engineering Company, SEC</h3>
+            <p class="justify-text">
+              Software Engineering Company « SEC » située à l’adresse 1454 Colonel Ebeya, immeuble PASHA, 1er niveau, Commune de la Gombe, dans la province de Kinshasa ; est une entreprise d’intégration des solutions informatiques de droit congolais intervenant dans le domaine de la nouvelle technologie de l’information et de la télécommunication, depuis plus de 15 ans.
+            </p>
+            <p class="justify-text">Outre Evolis, nous commercialisons et  distribuons des produits fabriqués par :</p>
+              <ul>
+                  
+                <li><i class="bi bi-check-circle"></i> <span class="partner-name">Suprema.inc</span> à Corée du sud</li>
+                <li><i class="bi bi-check-circle"></i> <span class="partner-name">Screen Check</span> à Dubaï, </li>
+                <li><i class="bi bi-check-circle"></i> <span class="partner-name">CardPresso</span> au Portugal</li>
+                <li><i class="bi bi-check-circle"></i> <span class="partner-name">Grandstream</span> aux USA, 
+                  <span class="partner-name">NEC</span> au Japon,
+                  <span class="partner-name">Proline</span> à UK,
+                  <span class="partner-name">	Trodat stamp</span>, <span class="partner-name"> Shiny Stamp </span>, <span class="partner-name"> Brother Stamp </span>, <span class="partner-name"> NEO  China</span>
+
+                </li>
+              </ul>
+              <p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients" data-aos="fade-up">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Nos Clients</h2>
+          <p>Plus de 15 ans, nous accompagnons les institutions tant privées que publiques grâce aux nos produits et services</p>
+        </div>
+
+        <div class="clients-slider swiper">
+          <div class="swiper-wrapper align-items-center">
+            {% for customer in customers %}
+                 <div class="swiper-slide"><img src="{{ asset('media/pictures/'~customer.picture) }}" class="img-fluid" alt="{{ customer.name }}"></div>
+            {% endfor %}
+           
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Clients Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials" data-aos="fade-up">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Ils parlent de nous</h2>
+          <p>Nos porduits et services nous font gagner la confiance de nos nombreux clients</p>
+        </div>
+
+        <div class="row">
+
+          {% for item in testimonials %}
+            <div class="col-lg-6" data-aos="fade-up">
+              <div class="testimonial-item mt-4">
+                <img src="{{ asset('media/pictures/'~item.picture) }}" class="testimonial-img" alt="{{ item.name }}">
+                <h3>{{item.name}}</h3>
+                <h4>{{item.grade ~' '~ item.entreprise.name}}</h4>
+                <p class="u-margin-top-medium">
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  {{ item.description }}
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div>            
+          {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+{% endblock %}

@@ -8,16 +8,33 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="active" href="{{ path('app_home') }}">GP-SEC</a></li>
-          <li><a href="#about">Qui sommes-nous ?</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#products">Produits</a></li>
-          <li><a href="#recent-posts">Actualités</a></li>
-          
-          <li><a href="#footer">Contactez-vous</a></li>
+          {% if url is defined %}
+              {% if app.user is null %}
+                <li><a {% if url == "homepage" %} class="active" {% endif %} href="{{ path('app_home') }}">GP-SEC</a></li>
+              {% else %}
+                   <li><a href="{{ path('app_dashboard_home') }}" >Dashboard</a></li>
+              {% endif %}
+              
+              <li><a {% if url == "about-us" %} class="active" {% endif %} href="{{ path('app_about') }}">Qui sommes-nous ?</a></li>
+              <li><a {% if url == "service" %} class="active" {% endif %} href="{{ path('app_service') }}">Services</a></li>
+              <li><a href="{{ path('app_home') }}#products">Produits</a></li>
+              <li><a {% if url == "news" %} class="active" {% endif %}href="{{ path('app_news') }}">Actualités</a></li>          
+              <li><a {% if url == "contact-us" %} class="active" {% endif %} href="{{ path('app_contact_us') }}">Contactez-nous</a></li>              
+          {% else %}
+              <li><a href="{{ path('app_dashboard_home') }}" class="active">Dashboard</a></li>
+              <li><a href="{{ path('app_about') }}">Qui sommes-nous ?</a></li>
+              <li><a href="{{ path('app_service') }}">Services</a></li>
+              <li><a href="{{ path('app_home') }}#products">Produits</a></li>
+              <li><a href="{{ path('app_news') }}">Actualités</a></li>          
+              <li><a  href="{{ path('app_contact_us') }}">Contactez-nous</a></li>
+          {% endif %}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-    <a href="http://gp-sec.com/demander-un-devis/" class="btn btn--red btn-get-started  animate__animated animate__fadeInUp">Demander un devis</a>
+      {% if app.user is not null %}
+        <a href="{{ path('app_logout') }}" class="btn btn--red btn-get-started  animate__animated animate__fadeInUp"><i class="fa fa-lock"></i> Se deconncter</a>
+      {% else %}
+        <a href="{{ path('app_customer_devis') }}" class="btn btn--red btn-get-started  animate__animated animate__fadeInUp">Demander un devis</a>
+      {% endif %}      
     </div>
   </header>

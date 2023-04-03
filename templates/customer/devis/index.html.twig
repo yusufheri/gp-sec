@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demander un devis ::GP-SEC{% endblock %}
+
+{% block body %}
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <ol>
+            <li><a href="{{ path('app_home') }}">Page d'accueil</a></li>
+            <li>Demander un devis</li>
+            </ol>
+            <h2>Nous contacter pour un devis</h2>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section id="blog" class="blog">
+      <div class="container bg-light" data-aos="fade-up">
+        <div class="row">
+            <div class="col-md-4 bg-devis">
+                <h5 class="u-margin-bottom-small u-margin-top-small text-danger text-center">Un petit souci ? Nos experts sont là pour vous guider ! </h5>
+                <p class="justify-text">                   
+                    Veuillez nous en dire un peu plus sur votre besoin (cartes, rubans, kits de nettoyage) et votre modèle d’imprimante.                    
+                </p>
+                <p class="justify-text">
+                    Grâce à votre numéro de série, nous serons capable d’identifier les consommables compatibles avec votre imprimante. Un expert Evolis vous contactera rapidement pour répondre à vos questions et définir vos besoins.
+                </p>
+                <p class="justify-text">
+                     Enfin, nous nous associerons à l’un de nos partenaires pour vous aider à concrétiser votre achat.
+                </p>
+            </div>
+            <div class="col-md-8">
+                {{ form_start(form) }}
+                <h4 class="u-margin-bottom-small">Merci de fournir de plus amples informations à notre équipe d'experts</h4><hr>
+
+                
+
+                <h5>Votre structure / Entreprise</h5>
+                <div class="row">
+                    <div class="col-md">{{ form_row(form.entreprise) }}</div>
+                </div>                
+
+                <div class="row">
+                    <div class="col-md">{{ form_row(form.pays) }}</div>
+                    <div class="col-md">{{ form_row(form.ville) }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md">{{ form_row(form.website) }}</div>
+                </div>
+
+                <h5 class="u-margin-top-small">Vos coordonnées</h5>
+                 <div class="row">
+                    <div class="col-md">{{ form_row(form.name) }}</div>
+                    <div class="col-md">{{ form_row(form.lastname) }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md">{{ form_row(form.email) }}</div>
+                    <div class="col-md">{{ form_row(form.telephone) }}</div>
+                </div>
+                {{ form_widget(form) }}
+
+                <button type="submit" class="btn btn--red"><i class="fa fa-check"></i> Envoyer ma demande</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        
+      </div>
+    </section>
+{% endblock %}
