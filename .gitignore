@@ -20,4 +20,4 @@ yarn-error.log
 /public/media/cache/
 ###< liip/imagine-bundle ###
 
-/assets/styles/app.css
+### /assets/styles/app.css ###
