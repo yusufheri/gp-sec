@@ -35,6 +35,12 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $picture = $form->get('picture')->getData();
+            $folder = $this->getParameter('profile.folder');
+            $ext = $picture->guessExtension();
+            $filename = bin2hex(random_bytes(10)) . '.' . $ext;
+            $picture->move($folder, $filename);
+            $product->setPicture($this->getParameter('profile.folder.public_path') . '' . $filename);
             $productRepository->add($product, true);
 
             return $this->redirectToRoute('app_dashboard_product_index', [], Response::HTTP_SEE_OTHER);
@@ -81,7 +87,7 @@ class ProductController extends AbstractController
      */
     public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
             $productRepository->remove($product, true);
         }
 

@@ -14,7 +14,7 @@
         <div class="clients-slider swiper">
           <div class="swiper-wrapper align-items-center">
             {% for partner in data.partners %}
-                <div class="swiper-slide"><img src="{{ asset('media/pictures/'~partner.picture) }}" class="img-fluid" alt="{{ partner.name }}"></div>
+                <div  class="swiper-slide"><img src="{{ asset('media/pictures/'~partner.picture) }}" class="img-fluid" alt="{{ partner.name }}"></div>
             {% endfor %}
           </div>
         </div>

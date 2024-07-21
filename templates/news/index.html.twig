@@ -46,7 +46,7 @@
                 <div class="entry-content">
                   <p class="justify-text">{{ news.description }}</p>
                   <div class="read-more">
-                    <a href="#">Lire plus...</a>
+                    <a href="{{ path('app_news_show', {'id': news.id}) }}">Lire plus...</a>
                   </div>
                 </div>
 

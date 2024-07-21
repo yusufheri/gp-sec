@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+     <section id="about" class="about">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6"  data-aos="fade-up-left">
+            <img style="width: 100%;" src="{{ asset('profiles/'~product.picture) }}" class="img-fluid u-margin-top-small">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 content"  data-aos="fade-up-right">
+            <h3 class="u-margin-top-small">{{ product.name }}</h3>
+            <p class="justify-text">
+              {{ product.description }}
+            </p>
+            <p class="justify-text">{{ product.updatedAt ? product.updatedAt|date('Y-m-d H:i:s') : '' }}</p>
+             
+              <p>
+          </div>
+        </div>
+
+      </div>
+      <a class="btn text-center" href="{{ path('app_home') }}">Toute les produits</a>
+    </section><!-- End About Section -->
+{% endblock %}

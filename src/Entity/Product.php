@@ -75,6 +75,11 @@ class Product
         $this->parentProducts = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->name;  // Adjust this to return a meaningful string representation of your Product
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -35,6 +35,17 @@ class Homepage
         return $this->manager->createQuery("SELECT  p FROM App\Entity\Partner p  ORDER BY p.updatedAt DESC ")
             ->getResult();
     }
+    public function getCategoryProducts()
+    {
+        return $this->manager->createQuery("SELECT  cp FROM App\Entity\CategoryProduct cp  ORDER BY cp.name DESC ")
+            ->getResult();
+    }
+    public function getProducts()
+    {
+        return $this->manager->createQuery("SELECT  pr FROM App\Entity\Product pr  ORDER BY pr.updatedAt DESC ")
+            ->setMaxResults(9)
+            ->getResult();
+    }
 
     public function getTestimonials()
     {

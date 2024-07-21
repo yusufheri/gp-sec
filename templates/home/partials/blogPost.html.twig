@@ -10,8 +10,10 @@
         <div class="row gy-4">
             
             {% for news in data.news %}
-                <div class="col-xl-4 col-md-6">
-                    <article>
+            
+                <div  class="col-xl-4 col-md-6">
+                <a href="{{ path('app_news_show', {'id': news.id}) }}">
+                    <article style="box-shadow: none!important;border-bottom: 1px solid #d0d1d8;border-top: 1px solid #d0d1d8;">
 
                     <div class="post-img">
                         <img src="{{ asset('media/pictures/'~news.picture) }}" alt="" class="img-fluid">
@@ -20,13 +22,12 @@
                     <p class="post-category">{{news.category.name}}</p>
 
                     <h2 class="title">
-                        <a href="blog-details.html">{{news.name}}</a>
+                        {{news.name}}
                     </h2>
 
                     <div class="d-flex align-items-center">
                         <img src="assets/img/apple-touch-icon.png" alt="" class="img-fluid post-author-img flex-shrink-0">
                         <div class="post-meta">
-                        <p class="post-author">Admin</p>
                         <p class="post-date">
                             <time datetime="2022-01-01">{{ news.publiedAt|date('d/m/Y H:i') }}</time>
                         </p>
@@ -34,7 +35,8 @@
                     </div>
 
                     </article>
-                </div>                
+                </a>
+                </div>             
             {% endfor %}
 
         </div><!-- End recent posts list -->

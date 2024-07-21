@@ -10,7 +10,7 @@
         <div class="row">
           {% for service in data.services %}
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch aos-init aos-animate" data-aos="fade-up-right" data-aos-delay="100">
-                <div class="icon-box">
+                <div style="box-shadow: none!important;" class="icon-box">
                   <div class="icon"><i class="bx bxl-dribbble"></i></div>
                   <h4><a href="">{{ service.name }}</a></h4>
                     <p class="justify-text">{{ service.description|extractText(200) }}</p>

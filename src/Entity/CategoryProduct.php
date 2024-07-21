@@ -38,7 +38,10 @@ class CategoryProduct
     {
         $this->products = new ArrayCollection();
     }
-
+    public function __toString()
+    {
+        return $this->name; // or any other string representation you prefer
+    }
     public function getId(): ?int
     {
         return $this->id;

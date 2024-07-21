@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\News;
 use App\Repository\CategoryNewsRepository;
 use App\Repository\NewsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,6 +21,13 @@ class NewsController extends AbstractController
             'data' => $newsRepository->findBy([], ["publiedAt" => "DESC"]),
             'categories' => $categoryNewsRepository->findBy([], ["name" => "ASC"]),
             'lastNews' => $newsRepository->findBy([], ["publiedAt" => "DESC"], 3),
+        ]);
+    }
+    #[Route('/our-news/{id}', name: 'app_news_show', methods: ['GET'])]
+    public function show(News $news): Response
+    {
+        return $this->render('service/show.html.twig', [
+            'news' => $news,
         ]);
     }
 }
