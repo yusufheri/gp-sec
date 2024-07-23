@@ -13,7 +13,6 @@
                         <tr>
                             <th>N°</th>
                             <th width="50%">Partenaires</th>
-                            <th>Description</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -27,7 +26,6 @@
                                     {{ partner.name }}
                                 </div>
                             </td>
-                            <td>{{ partner.description }}</td>
                             <td>
                                 <a href="{{ path('app_dashboard_partner_show', {'id': partner.id}) }}" class="btn btn--blue"><i class="fa fa-eye"></i></a>
                                 <a href="{{ path('app_dashboard_partner_edit', {'id': partner.id}) }}" class="btn btn--red"><i class="fa fa-edit"></i></a>

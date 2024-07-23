@@ -8,26 +8,14 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Title</th>
-                <th>Description</th>
-                <th>UrlButton</th>
-                <th>TextButton</th>
-                <th>Picture</th>
-                <th>UpdatedAt</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for slide in slides %}
             <tr>
-                <td>{{ slide.id }}</td>
-                <td>{{ slide.title }}</td>
-                <td>{{ slide.description }}</td>
-                <td>{{ slide.urlButton }}</td>
-                <td>{{ slide.textButton }}</td>
-                <td>{{ slide.picture }}</td>
-                <td>{{ slide.updatedAt ? slide.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ slide.title }}  {{ slide.urlButton }}</td>
                 <td>
                     <a href="{{ path('app_dashboard_slide_show', {'id': slide.id}) }}">show</a>
                     <a href="{{ path('app_dashboard_slide_edit', {'id': slide.id}) }}">edit</a>
@@ -41,5 +29,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_dashboard_slide_new') }}">Create new</a>
+    <a class="btn btn-danger" href="{{ path('app_dashboard_slide_new') }}">Create new</a>
 {% endblock %}

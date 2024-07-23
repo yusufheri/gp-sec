@@ -35,6 +35,11 @@ class Homepage
         return $this->manager->createQuery("SELECT  p FROM App\Entity\Partner p  ORDER BY p.updatedAt DESC ")
             ->getResult();
     }
+    public function getSlides()
+    {
+        return $this->manager->createQuery("SELECT  sl FROM App\Entity\Slide sl  ORDER BY sl.updatedAt DESC ")
+            ->getResult();
+    }
     public function getCategoryProducts()
     {
         return $this->manager->createQuery("SELECT  cp FROM App\Entity\CategoryProduct cp  ORDER BY cp.name DESC ")

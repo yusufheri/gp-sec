@@ -89,7 +89,7 @@
                   <div class="sidebar-item recent-posts">
                     <div class="post-item clearfix">
                       <img src="{{asset('media/pictures/'~news.picture)}}" alt="">
-                      <h4><a href="blog-single.html">{{news.name}}</a></h4>
+                      <h4><a href="{{ path('app_news_show', {'id': news.id}) }}">{{news.name}}</a></h4>
                       <time datetime="2020-01-01">{{news.publiedAt|date()}}</time>
                     </div>
                   </div>

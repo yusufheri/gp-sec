@@ -37,6 +37,14 @@ class SlideController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $slideRepository->add($slide, true);
 
+            $picture = $form->get('picture')->getData();
+            $folder = $this->getParameter('slider.folder');
+            $ext = $picture->guessExtension();
+            $filename = bin2hex(random_bytes(10)) . '.' . $ext;
+            $picture->move($folder, $filename);
+            $slide->setPicture($this->getParameter('slider.folder.public_path') . '' . $filename);
+            $slideRepository->add($slide, true);
+
             return $this->redirectToRoute('app_dashboard_slide_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -81,7 +89,7 @@ class SlideController extends AbstractController
      */
     public function delete(Request $request, Slide $slide, SlideRepository $slideRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$slide->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $slide->getId(), $request->request->get('_token'))) {
             $slideRepository->remove($slide, true);
         }
 

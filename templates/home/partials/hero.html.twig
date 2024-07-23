@@ -6,57 +6,20 @@
         <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
         <div class="carousel-inner" role="listbox">
-
-          <!-- Slide 1 -->
-          <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg)">
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown">Bienvenue chez <br><span>Software Engineering Company, SEC</span></h2>
-                <p class="animate__animated animate__fadeInUp">
-                    Entreprise d’intégration des solutions informatiques de droit congolais intervenant dans le domaine de la nouvelle technologie de l’information et de la télécommunication, depuis plus de 15 ans.</p>
-                <a href="{{ path('app_customer_devis') }}" class="btn btn--red btn-get-started animate__animated animate__fadeInUp">Contactez-nous</a>
+        {% for slide in data.slides %}
+            <div class="carousel-item active" style="background-image: url({{ asset('slider/'~slide.picture) }})">
+                <div class="carousel-container">
+                  <div class="carousel-content">
+                   <h2 class="animate__animated animate__fadeInDown">{{ slide.title }} <br><span>{{ slide.urlbutton }}</span></h2>
+                    <h2 class="animate__animated animate__fadeInDown"></h2>
+                    <p class="animate__animated animate__fadeInUp">
+                        {{ slide.description }}
+                    </p>
+                    <a href="{{ path('app_customer_devis') }}" class="btn btn--red btn-get-started animate__animated animate__fadeInUp">Contactez-nous</a>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-
-          <!-- Slide 2 -->
-          <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg)">
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2 class="animate__animated fanimate__adeInDown">Représentant officiel de la firme <span>Evolis</span></h2>
-                <p class="animate__animated animate__fadeInUp">
-                    Le savoir-faire d’Evolis est largement reconnu par de nombreuses entreprises et organisations à travers le monde. En RDC à travers Software Engineering Company, elle occupe 80% du part de marché dans le secteur d’identification et impression des cartes biométries et sécurisées.     
-                </p>
-                <a href="{{ path('app_customer_devis') }}" class="btn btn--red btn-get-started animate__animated animate__fadeInUp">Demander un devis</a>
-              </div>
-            </div>
-          </div>
-
-           <!-- Slide 3 -->
-          <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg)">
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2 class="animate__animated fanimate__adeInDown">Fournisseur des matériels informatiques <span>professionnels</span></h2>
-                <p class="animate__animated animate__fadeInUp">
-                    Un bon choix des matériels informatiques est l'un des éléments de bases pour votre  productivité. L'optimisation et la performance font l'objet de nos atouts.     
-                </p>
-                <a href="{{ path('app_customer_devis') }}" class="btn btn--red btn-get-started animate__animated animate__fadeInUp">Demander un devis</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 4 -->
-          <div class="carousel-item" style="background-image: url(assets/img/slide/slide-4.jpg)">
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown">Ils font confiance au <span>GP-SEC</span></h2>
-                <p class="animate__animated animate__fadeInUp">
-                    Nous représentons les firmes internationales mondialement reconnues comme « Evolis France » dont sa spécificité est la conception, la fabrication et la commercialisation des imprimantes adaptées aux émissions des cartes biométries hyper sécurisées.
-                </p>
-                <a href="{{ path('app_customer_devis') }}" class="btn btn--red btn-get-started animate__animated animate__fadeInUp">Demander un devis</a>
-              </div>
-            </div>
-          </div>
+        {% endfor %}
 
           <!-- Slide 4 
           <div class="carousel-item" style="background-image: url(assets/img/slide/slide-1.jpg)">

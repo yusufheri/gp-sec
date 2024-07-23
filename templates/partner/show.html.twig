@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+     <section id="about" class="about">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6"  data-aos="fade-up-left">
+            <img src="{{ asset('media/pictures/'~news.picture) }}" class="img-fluid u-margin-top-small" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 content"  data-aos="fade-up-right">
+            <h3 class="u-margin-top-small">{{ news.name }}</h3>
+            <p class="justify-text">
+              {{ news.description }}
+            </p>
+            <p class="justify-text">{{ news.updatedAt ? news.updatedAt|date('Y-m-d H:i:s') : '' }}</p>
+             
+              <p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+  
+    <a href="{{ path('app_home') }}">Tout les services</a>
+{% endblock %}
