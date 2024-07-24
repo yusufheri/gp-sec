@@ -17,14 +17,14 @@
               
               <li><a {% if url == "about-us" %} class="active" {% endif %} href="{{ path('app_about') }}">Qui sommes-nous ?</a></li>
               <li><a {% if url == "service" %} class="active" {% endif %} href="{{ path('app_service') }}">Services</a></li>
-              <li><a href="{{ path('app_product') }}">Produits</a></li>
+              <li><a href="{{ path('app_home') }}#products">Produits</a></li>
               <li><a {% if url == "news" %} class="active" {% endif %}href="{{ path('app_news') }}">Actualités</a></li>          
               <li><a {% if url == "contact-us" %} class="active" {% endif %} href="{{ path('app_contact_us') }}">Contactez-nous</a></li>              
           {% else %}
               <li><a href="{{ path('app_dashboard_home') }}" class="active">Dashboard</a></li>
               <li><a href="{{ path('app_about') }}">Qui sommes-nous ?</a></li>
               <li><a href="{{ path('app_service') }}">Services</a></li>
-              <li><a href="{{ path('app_product') }}">Produits</a></li>
+              <li><a href="{{ path('app_home') }}#products">Produits</a></li>
               <li><a href="{{ path('app_news') }}">Actualités</a></li>          
               <li><a  href="{{ path('app_contact_us') }}">Contactez-nous</a></li>
           {% endif %}
