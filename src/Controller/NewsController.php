@@ -9,10 +9,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+/**
+ * @Route("news_nws")
+ */
 class NewsController extends AbstractController
 {
     /**
-     * @Route("/our-news", name="app_news")
+     * @Route("/", name="app_news")
      */
     public function index(NewsRepository $newsRepository, CategoryNewsRepository $categoryNewsRepository): Response
     {
@@ -23,7 +27,11 @@ class NewsController extends AbstractController
             'lastNews' => $newsRepository->findBy([], ["publiedAt" => "DESC"], 3),
         ]);
     }
-    #[Route('/our-news/{id}', name: 'app_news_show', methods: ['GET'])]
+
+    /**
+     * @Route("/show/{id}", name="app_news_show")
+     */
+    // #[Route('/our-news/{id}', name: 'app_news_show', methods: ['GET'])]
     public function show(News $news): Response
     {
         return $this->render('service/show.html.twig', [
