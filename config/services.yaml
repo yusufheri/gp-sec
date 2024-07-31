@@ -4,11 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-    profile.folder: '%kernel.project_dir%/public/profiles'
-    profile.folder.public_path: ''
-
-    slider.folder: '%kernel.project_dir%/public/slider'
-    slider.folder.public_path: ''
+    produits_directory: '%kernel.project_dir%/public/profiles'
+    sliders_directory: '%kernel.project_dir%/public/slider'
 
 services:
     # default configuration for services in *this* file
