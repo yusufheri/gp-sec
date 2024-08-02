@@ -7,7 +7,7 @@
 
         <div class="carousel-inner" role="listbox">
         {% for slide in data.slides %}
-            <div class="carousel-item active" style="background-image: url({{ asset('slider/'~slide.picture) }})">
+            <div class="carousel-item active" style="background-image: url({{ asset('/slider/' ~ slide.picture) }})">
                 <div class="carousel-container">
                   <div class="carousel-content">
                    <h2 class="animate__animated animate__fadeInDown">{{ slide.title }} <br><span>{{ slide.urlbutton }}</span></h2>
