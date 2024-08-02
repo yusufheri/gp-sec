@@ -8,7 +8,7 @@
 
         <div class="row">
           <div class="col-lg-6"  data-aos="fade-up-left">
-            <img style="width: 100%;" src="{{ asset('profiles/'~product.picture) }}" class="img-fluid u-margin-top-small">
+            <img style="width: 100%;" src="{{ asset('/profiles/' ~ product.picture) }}" alt="{{ product.name }}" class="img-fluid u-margin-top-small">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 content"  data-aos="fade-up-right">
             <h3 class="u-margin-top-small">{{ product.name }}</h3>
