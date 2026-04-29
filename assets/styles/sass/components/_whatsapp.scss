@@ -1,0 +1,70 @@
+.whatsapp-float {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 65px;
+  z-index: 996;
+  background: #25D366;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  transition: all 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+
+  i {
+    font-size: 24px;
+    color: #fff;
+    line-height: 0;
+  }
+
+  &:hover {
+    background: #128C7E;
+    color: #fff;
+  }
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.phone-float {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 115px; /* Positionné au dessus du WhatsApp (65px + 40px + 10px) */
+  z-index: 996;
+  background: #007bff; /* Bleu pour le téléphone */
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  transition: all 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+
+  i {
+    font-size: 22px;
+    color: #fff;
+    line-height: 0;
+  }
+
+  &:hover {
+    background: #0056b3;
+    color: #fff;
+  }
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
