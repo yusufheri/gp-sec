@@ -44,7 +44,9 @@
         </main>
 
         {% include 'partials/footer.html.twig' %}
-        <a href="{{ path('app_home') }}#exclusivite" class="promo-float d-flex align-items-center justify-content-center" title="Promotion Exclusive"><i class="bi bi-megaphone-fill"></i></a>
+        <a href="{{ path('app_home') }}#exclusivite" class="promo-float d-flex align-items-center justify-content-center" title="Promotion Exclusive">
+            <img src="{{ asset('assets/img/logo-evo-bleue.png') }}" alt="Exclusivité">
+        </a>
         <a href="tel:+243895666413" class="phone-float d-flex align-items-center justify-content-center"><i class="bi bi-telephone-fill"></i></a>
         <a href="https://wa.me/243811640080" class="whatsapp-float d-flex align-items-center justify-content-center" target="_blank"><i class="bi bi-whatsapp"></i></a>
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
