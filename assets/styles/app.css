@@ -663,6 +663,8 @@ section {
   font-family: "Poppins", "Open Sans", sans-serif;
   margin-left: auto;
   margin-right: auto;
+  box-sizing: border-box;
+  overflow: hidden;
   /* Specific styles for the overlay version */
 }
 .promo-popup-overlay .promo-popup {
@@ -790,7 +792,8 @@ section {
   top: 50%;
   height: 2px;
   background: linear-gradient(to right, transparent, #c5c5c5);
-  width: 380px;
+  width: calc(50vw - 40px);
+  max-width: 380px;
 }
 .promo-popup__divider span::before {
   right: 20px;
@@ -894,20 +897,32 @@ section {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .promo-popup-overlay {
+    padding: 10px;
+  }
   .promo-popup {
     border-radius: 8px;
+    max-width: calc(100vw - 20px);
+  }
+  .promo-popup *,
+  .promo-popup *::before,
+  .promo-popup *::after {
+    box-sizing: border-box;
   }
   .promo-popup__header {
     flex-direction: column;
-    padding: 25px 20px 15px;
+    padding: 25px 15px 15px;
   }
   .promo-popup__header-logos {
     justify-content: center;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 12px;
   }
   .promo-popup__logo-sec {
     height: 38px;
+    flex: 0 0 100%;
+    object-fit: contain;
+    margin-bottom: 5px;
   }
   .promo-popup__logo-badge {
     height: 50px;
@@ -920,23 +935,36 @@ section {
     text-align: center;
   }
   .promo-popup__offer, .promo-popup__engagements {
-    padding: 15px 20px;
+    padding: 15px 15px;
   }
   .promo-popup__banner {
-    padding: 12px 20px;
+    padding: 12px 15px;
   }
   .promo-popup__banner p {
     font-size: 0.95rem;
   }
   .promo-popup__footer {
-    padding: 15px 20px;
+    padding: 15px 15px;
     border-radius: 0 0 8px 8px;
   }
+  .promo-popup__divider {
+    padding: 0 15px;
+    overflow: hidden;
+  }
   .promo-popup__divider span::before, .promo-popup__divider span::after {
-    width: 120px;
+    width: calc(40vw - 20px);
   }
 }
 @media (max-width: 480px) {
+  .promo-popup {
+    max-width: calc(100vw - 16px);
+  }
+  .promo-popup-overlay {
+    padding: 8px;
+  }
+  .promo-popup__header {
+    padding: 20px 12px 10px;
+  }
   .promo-popup__title {
     font-size: 1.5rem;
   }
@@ -945,6 +973,18 @@ section {
   }
   .promo-popup__logo-badge {
     height: 42px;
+  }
+  .promo-popup__offer, .promo-popup__engagements {
+    padding: 12px 12px;
+  }
+  .promo-popup__banner {
+    padding: 10px 12px;
+  }
+  .promo-popup__footer {
+    padding: 12px 12px;
+  }
+  .promo-popup__divider span::before, .promo-popup__divider span::after {
+    width: calc(35vw - 15px);
   }
 }
 /*--------------------------------------------------------------
