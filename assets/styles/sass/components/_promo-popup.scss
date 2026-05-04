@@ -1,0 +1,364 @@
+/*--------------------------------------------------------------
+# Promo Popup
+--------------------------------------------------------------*/
+.exclusivite-section {
+  scroll-margin-top: 100px;
+}
+
+.promo-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease, background 0.4s ease;
+
+  &.active {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.promo-popup {
+  background: #fff;
+  border-radius: 12px;
+  max-width: 1000px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', 'Open Sans', sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+
+  /* Specific styles for the overlay version */
+  .promo-popup-overlay & {
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(30px) scale(0.95);
+    transition: transform 0.4s ease;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .promo-popup-overlay.active & {
+    transform: translateY(0) scale(1);
+  }
+
+  /* Specific styles for the static section version */
+  &--static {
+    max-width: 100%;
+    border: none;
+    box-shadow: none;
+    margin-bottom: 0;
+    border-radius: 0;
+    scroll-margin-top: 100px; /* Compense la hauteur du header fixe */
+  }
+
+
+  /* Close Button */
+  &__close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #999;
+    cursor: pointer;
+    z-index: 10;
+    line-height: 1;
+    transition: color 0.3s, transform 0.3s;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+
+    &:hover {
+      color: $color-primary;
+      transform: rotate(90deg);
+      background: rgba(0,0,0,0.05);
+    }
+  }
+
+  /* Header */
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 35px 10px;
+    gap: 20px;
+  }
+
+  &__header-left {
+    flex: 1;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: $color-primary;
+    margin: 0 0 5px;
+    letter-spacing: 2px;
+    line-height: 1.1;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1a1a5e;
+    margin: 0 0 5px;
+    line-height: 1.2;
+  }
+
+  &__date {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0 0 4px;
+    font-style: italic;
+  }
+
+  &__canal {
+    font-size: 0.88rem;
+    color: #1a1a5e;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  &__header-logos {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  &__logo-sec {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  &__logo-badge {
+    height: 65px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* Divider */
+  &__divider {
+    text-align: center;
+    padding: 0 35px;
+
+    span {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: #1a1a5e;
+      border-radius: 50%;
+      position: relative;
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        height: 2px;
+        background: linear-gradient(to right, transparent, #c5c5c5);
+        width: 380px;
+      }
+
+      &::before {
+        right: 20px;
+        transform: translateY(-50%);
+        background: linear-gradient(to left, #c5c5c5, transparent);
+      }
+
+      &::after {
+        left: 20px;
+        transform: translateY(-50%);
+        background: linear-gradient(to right, #c5c5c5, transparent);
+      }
+    }
+  }
+
+  /* Offer */
+  &__offer {
+    padding: 10px 35px;
+  }
+
+  &__question {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: $color-primary;
+    margin: 0 0 12px;
+  }
+
+  &__offer ul {
+    list-style: disc;
+    padding-left: 22px;
+    margin: 0;
+
+    li {
+      font-size: 0.95rem;
+      color: #333;
+      margin-bottom: 4px;
+      line-height: 1.3;
+
+      strong {
+        color: $color-primary;
+      }
+    }
+  }
+
+  /* Red Banner */
+  &__banner {
+    background: $color-primary;
+    padding: 8px 35px;
+    margin: 3px 0;
+
+    p {
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-align: center;
+      margin: 0;
+      font-style: italic;
+    }
+  }
+
+  /* Engagements */
+  &__engagements {
+    padding: 10px 35px 10px;
+
+    &-intro {
+      font-size: 0.92rem;
+      color: #333;
+      font-weight: 600;
+      margin: 0 0 12px;
+      line-height: 1.5;
+    }
+
+    ul {
+      list-style: disc;
+      padding-left: 22px;
+      margin: 0;
+
+      li {
+        font-size: 0.88rem;
+        color: #444;
+        margin-bottom: 6px;
+        line-height: 1.35;
+
+        strong {
+          color: #1a1a5e;
+        }
+      }
+    }
+  }
+
+  /* Footer */
+  &__footer {
+    background: #264367;
+    padding: 12px 35px;
+    border-radius: 0 0 12px 12px;
+  }
+
+  &__cta {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 10px;
+  }
+
+  &__note {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0 0 3px;
+    line-height: 1.5;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .promo-popup {
+    border-radius: 8px;
+
+    &__header {
+      flex-direction: column;
+      padding: 25px 20px 15px;
+    }
+
+    &__header-logos {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    &__logo-sec {
+      height: 38px;
+    }
+
+    &__logo-badge {
+      height: 50px;
+    }
+
+    &__title {
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    &__subtitle,
+    &__date,
+    &__canal {
+      text-align: center;
+    }
+
+    &__offer,
+    &__engagements {
+      padding: 15px 20px;
+    }
+
+    &__banner {
+      padding: 12px 20px;
+
+      p {
+        font-size: 0.95rem;
+      }
+    }
+
+    &__footer {
+      padding: 15px 20px;
+      border-radius: 0 0 8px 8px;
+    }
+
+    &__divider span {
+      &::before,
+      &::after {
+        width: 120px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .promo-popup {
+    &__title {
+      font-size: 1.5rem;
+    }
+
+    &__subtitle {
+      font-size: 0.92rem;
+    }
+
+    &__logo-badge {
+      height: 42px;
+    }
+  }
+}

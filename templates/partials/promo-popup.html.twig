@@ -1,0 +1,111 @@
+<!-- ======= Promo Popup ======= -->
+<div id="promoPopupOverlay" class="promo-popup-overlay" style="display:none;">
+  <div class="promo-popup">
+    <!-- Close Button -->
+    <button class="promo-popup__close" id="promoPopupClose" aria-label="Fermer">&times;</button>
+
+    <!-- Header -->
+    <div class="promo-popup__header">
+      <div class="promo-popup__header-left">
+        <h2 class="promo-popup__title">EXCLUSIVITÉ</h2>
+        <p class="promo-popup__subtitle">Bénéficiez d'une révision offerte et d'un ruban gratuit !</p>
+        <p class="promo-popup__date">- du 1er avril au 30 juin 2026 -</p>
+        <p class="promo-popup__canal"><em>Exclusivement via le Canal Officiel SEC en RDC</em></p>
+      </div>
+      <div class="promo-popup__header-logos">
+        <img src="{{ asset('assets/img/logo-sec.jpg') }}" alt="SEC - Software Engineering Company" class="promo-popup__logo-sec">
+        <img src="{{ asset('assets/img/logo-evo-bleue.png') }}" alt="Evolis Official Partner" class="promo-popup__logo-badge">
+        <img src="{{ asset('assets/img/logo-evo-red.png') }}" alt="Evolis Certified Repair Center" class="promo-popup__logo-badge">
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="promo-popup__divider"><span></span></div>
+
+    <!-- Offer Section -->
+    <div class="promo-popup__offer">
+      <div class="promo-popup__offer-text">
+        <p class="promo-popup__question">Vous avez acheté une imprimante Evolis en dehors de la RDC<sup>*</sup> ?</p>
+        <ul>
+          <li>Bénéficiez d'une <strong>révision gratuite</strong></li>
+          <li>Et repartez avec <strong>un ruban couleur<sup>**</sup> de 200 impressions offert</strong> !</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Red Banner -->
+    <div class="promo-popup__banner">
+      <p>Une révision par la société SEC ? Bien plus qu'un simple avantage !</p>
+    </div>
+
+    <!-- Engagements Section -->
+    <div class="promo-popup__engagements">
+      <p class="promo-popup__engagements-intro">
+        Les engagements d'un Partenaire Officiel, certifié par le fabricant Evolis, ayant la certification Evolis Repair Center :
+      </p>
+      <ul>
+        <li><strong>Fournir le meilleur service commercial</strong>, y compris les démonstrations d'imprimantes et de logiciels.</li>
+        <li><strong>Traiter toute demande de service client</strong> dans les 24h ouvrées et assurer un service de <strong>maintenance &amp; réparation</strong> tout au long de l'année</li>
+        <li><strong>Maintenir le plus haut niveau de formation technique Evolis</strong> des techniciens spécialisés</li>
+      </ul>
+    </div>
+
+    <!-- Footer -->
+    <div class="promo-popup__footer">
+      <p class="promo-popup__cta">Saisissez l'opportunité dès à présent !</p>
+      <p class="promo-popup__note">* Référence produit offert : R5F202M100 YMCKO Color Ribbon - 200 prints / roll</p>
+      <p class="promo-popup__note">** Offre exclusivement proposée via le Canal Officiel SEC pour les imprimantes venant du territoire hors Afrique et Moyen-Orient</p>
+      <p class="promo-popup__note">- Offre exclusive sur Q2, du 1er avril au 30 juin 2026</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  function getCookie(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+  }
+
+  function setCookie(name, value, days) {
+    var d = new Date();
+    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+    document.cookie = name + "=" + value + ";expires=" + d.toUTCString() + ";path=/;SameSite=Lax";
+  }
+
+  var overlay = document.getElementById('promoPopupOverlay');
+  var closeBtn = document.getElementById('promoPopupClose');
+
+  if (!getCookie('promo_popup_closed')) {
+    // Show popup after a small delay for smooth entrance
+    setTimeout(function() {
+      overlay.style.display = 'flex';
+      setTimeout(function() {
+        overlay.classList.add('active');
+      }, 10);
+    }, 800);
+  }
+
+  function closePopup() {
+    overlay.classList.remove('active');
+    setTimeout(function() {
+      overlay.style.display = 'none';
+    }, 400);
+    setCookie('promo_popup_closed', '1', 7);
+  }
+
+  closeBtn.addEventListener('click', closePopup);
+
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) {
+      closePopup();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+      closePopup();
+    }
+  });
+})();
+</script>

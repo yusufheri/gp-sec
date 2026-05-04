@@ -83,12 +83,21 @@
    * Back to top button
    */
   let backtotop = select(".back-to-top");
+  let whatsappfloat = select(".whatsapp-float");
+  let phonefloat = select(".phone-float");
+  let promofloat = select(".promo-float");
   if (backtotop) {
     const toggleBacktotop = () => {
       if (window.scrollY > 100) {
         backtotop.classList.add("active");
+        if (whatsappfloat) whatsappfloat.classList.add("active");
+        if (phonefloat) phonefloat.classList.add("active");
+        if (promofloat) promofloat.classList.add("active");
       } else {
         backtotop.classList.remove("active");
+        if (whatsappfloat) whatsappfloat.classList.remove("active");
+        if (phonefloat) phonefloat.classList.remove("active");
+        if (promofloat) promofloat.classList.remove("active");
       }
     };
     window.addEventListener("load", toggleBacktotop);

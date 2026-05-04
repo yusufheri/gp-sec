@@ -1,0 +1,122 @@
+.whatsapp-float {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 65px;
+  z-index: 996;
+  background: #25D366;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  transition: all 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+
+  i {
+    font-size: 24px;
+    color: #fff;
+    line-height: 0;
+  }
+
+  &:hover {
+    background: #128C7E;
+    color: #fff;
+  }
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.phone-float {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 115px; /* Positionné au dessus du WhatsApp (65px + 40px + 10px) */
+  z-index: 996;
+  background: #007bff; /* Bleu pour le téléphone */
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  transition: all 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+
+  i {
+    font-size: 22px;
+    color: #fff;
+    line-height: 0;
+  }
+
+  &:hover {
+    background: #0056b3;
+    color: #fff;
+  }
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+
+.promo-float {
+  position: fixed;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999;
+  background: #e6231e;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  transition: all 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(230, 35, 30, 0.4);
+  animation: pulse-red 2s infinite;
+  visibility: visible;
+  opacity: 1;
+
+  i {
+    font-size: 20px;
+    color: #fff;
+    line-height: 0;
+  }
+
+  &:hover {
+    background: #c51c18;
+    color: #fff;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 20px rgba(230, 35, 30, 0.6);
+  }
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-red {
+  0% {
+    box-shadow: 0 0 0 0 rgba(230, 35, 30, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(230, 35, 30, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(230, 35, 30, 0);
+  }
+}
