@@ -24,11 +24,11 @@
           
 
           {% for p in p %}
-              <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-                <div style="box-shadow: none!important;" class="icon-box">
-                  <div class="icon">
-                     <img style="border-radius: 8px;width: 150px;height: 20vh;" src="{{ asset('media/pictures/'~p.picture) }}" class="flex-shrink-0" alt="">
-                  </div><br>
+              <div class="col-lg-4 col-md-6 col-6 d-flex align-items-stretch mt-4">
+                <div class="icon-box partner-card">
+                  <div class="partner-card__logo">
+                     <img src="{{ asset('media/pictures/'~p.picture) }}" class="partner-card__img" alt="{{ p.name }}">
+                  </div>
                   <h4><a href="">{{ p.name }}</a></h4>
                   <p class="justify-text">{{ p.description }}</p>
                 </div>
