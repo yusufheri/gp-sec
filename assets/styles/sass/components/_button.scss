@@ -7,12 +7,12 @@
     &:visited {
         text-transform: uppercase;
         text-decoration: none;
-        padding: 11px 15px !important;
+        padding: 8px 16px; // Reduced from 11px 15px and removed !important
         display: inline-block;
         border-radius: 100px;
         transition: all .2s;
         position: relative;
-        //font-size: $default-font-size;
+        white-space: nowrap; // Ensure single line
 
         border: none;
         cursor: pointer;
@@ -81,6 +81,11 @@
     &--animated {
         animation:  moveInBottom .5s ease-out .75s;
         animation-fill-mode: backwards; /* Permet à cette animation, de se derouler à la fin de toutes autres animations */
+    }
+
+    &-sm {
+        padding: 5px 12px;
+        font-size: 0.85rem;
     }
 }
 
