@@ -1,0 +1,273 @@
+{% extends 'base.html.twig' %}
+
+{% block body_class %}is-dashboard{% endblock %}
+
+{% block body %}
+{# Styles Premium intégrés pour garantir l'affichage correct #}
+<style>
+    /* Masquer les éléments flottants du site principal dans le dashboard */
+    .is-dashboard .promo-float,
+    .is-dashboard .phone-float,
+    .is-dashboard .whatsapp-float,
+    .is-dashboard .back-to-top,
+    .is-dashboard .promo-popup {
+        display: none !important;
+    }
+
+    :root {
+        --gp-blue-dark: #08075c;
+        --gp-blue-navy: #050440;
+        --gp-red: #dc0014;
+        --gp-red-light: #ff3131;
+        --gp-gray-bg: #f4f7f6;
+        --sidebar-width: 280px;
+    }
+
+    .dashboard-layout {
+        display: flex;
+        min-height: calc(100vh - 70px);
+        background-color: var(--gp-gray-bg);
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Sidebar Styles */
+    .gp-sidebar {
+        width: var(--sidebar-width);
+        background: linear-gradient(180deg, var(--gp-blue-dark) 0%, var(--gp-blue-navy) 100%);
+        color: #fff;
+        padding: 2rem 0;
+        flex-shrink: 0;
+        box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+        z-index: 10;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar-nav {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar-section-title {
+        padding: 1.5rem 1.5rem 0.5rem;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: rgba(255,255,255,0.4);
+        font-weight: 700;
+    }
+
+    .sidebar-item {
+        margin: 0.2rem 1rem;
+    }
+
+    .sidebar-link {
+        display: flex;
+        align-items: center;
+        padding: 0.8rem 1.2rem;
+        color: rgba(255,255,255,0.7);
+        text-decoration: none;
+        font-size: 0.9rem;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+    }
+
+    .sidebar-link i {
+        margin-right: 12px;
+        font-size: 1.2rem;
+        width: 25px;
+        text-align: center;
+    }
+
+    .sidebar-link:hover {
+        background: rgba(255,255,255,0.1);
+        color: #fff;
+        text-decoration: none;
+        transform: translateX(5px);
+    }
+
+    .sidebar-link.active {
+        background: var(--gp-red);
+        color: #fff;
+        box-shadow: 0 4px 15px rgba(220, 0, 20, 0.4);
+    }
+
+    /* Content Area */
+    .gp-content {
+        flex: 1;
+        padding: 2.5rem;
+        overflow-y: auto;
+    }
+
+    .dashboard-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .dashboard-header h1 {
+        font-weight: 700;
+        color: var(--gp-blue-dark);
+        font-size: 1.8rem;
+    }
+
+    /* Stats Cards */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .stat-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        border: 1px solid rgba(0,0,0,0.03);
+        transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        margin-right: 1.2rem;
+    }
+
+    .icon-red { background: rgba(220, 0, 20, 0.1); color: var(--gp-red); }
+    .icon-blue { background: rgba(8, 7, 92, 0.1); color: var(--gp-blue-dark); }
+    .icon-orange { background: rgba(255, 185, 0, 0.1); color: #ffb900; }
+
+    .stat-info .label { display: block; font-size: 0.8rem; color: #888; font-weight: 500; text-transform: uppercase; }
+    .stat-info .value { display: block; font-size: 1.6rem; font-weight: 800; color: #333; }
+
+    /* Action Cards */
+    .action-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .action-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+        text-decoration: none !important;
+        color: #333;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        border: 1px solid rgba(0,0,0,0.03);
+        transition: all 0.3s ease;
+    }
+
+    .action-card:hover {
+        border-color: var(--gp-red);
+        box-shadow: 0 10px 30px rgba(220, 0, 20, 0.15);
+        transform: translateY(-5px);
+    }
+
+    .action-icon {
+        font-size: 2.2rem;
+        color: var(--gp-blue-dark);
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .action-card:hover .action-icon {
+        color: var(--gp-red);
+        transform: scale(1.1);
+    }
+
+    .action-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .action-card p { font-size: 0.85rem; color: #777; margin: 0; }
+
+    /* Mobile Responsive */
+    @media (max-width: 991px) {
+        .dashboard-layout { flex-direction: column; }
+        .gp-sidebar { width: 100%; padding: 1rem 0; }
+        .sidebar-nav { display: flex; overflow-x: auto; padding-bottom: 0.5rem; }
+        .sidebar-section-title { display: none; }
+        .sidebar-item { margin: 0 0.5rem; flex-shrink: 0; }
+        .sidebar-link span { display: none; }
+        .sidebar-link i { margin-right: 0; }
+        .gp-content { padding: 1.5rem; }
+    }
+</style>
+
+<div class="dashboard-layout">
+    <aside class="gp-sidebar">
+        <nav class="sidebar-nav">
+            <div class="sidebar-section-title">Principal</div>
+            <div class="sidebar-item">
+                <a href="{{ path('app_dashboard_home') }}" class="sidebar-link {% if app.request.get('_route') == 'app_dashboard_home' %}active{% endif %}">
+                    <i class="bi bi-grid-fill"></i> <span>Dashboard</span>
+                </a>
+            </div>
+            <div class="sidebar-item">
+                <a href="{{ path('app_dashboard_devis_index') }}" class="sidebar-link {% if 'devis' in app.request.get('_route') %}active{% endif %}">
+                    <i class="bi bi-file-earmark-text-fill"></i> <span>Devis Reçus</span>
+                </a>
+            </div>
+
+            <div class="sidebar-section-title">Catalogue</div>
+            <div class="sidebar-item">
+                <a href="{{ path('app_dashboard_product_index') }}" class="sidebar-link {% if 'product' in app.request.get('_route') and 'category' not in app.request.get('_route') %}active{% endif %}">
+                    <i class="bi bi-box-seam-fill"></i> <span>Produits</span>
+                </a>
+            </div>
+            <div class="sidebar-item">
+                <a href="{{ path('app_dashboard_category_product_index') }}" class="sidebar-link {% if 'category_product' in app.request.get('_route') %}active{% endif %}">
+                    <i class="bi bi-tags-fill"></i> <span>Catégories</span>
+                </a>
+            </div>
+            <div class="sidebar-item">
+                <a href="{{ path('app_dashboard_service_index') }}" class="sidebar-link {% if 'service' in app.request.get('_route') %}active{% endif %}">
+                    <i class="bi bi-gear-fill"></i> <span>Services</span>
+                </a>
+            </div>
+
+            <div class="sidebar-section-title">Contenu</div>
+            <div class="sidebar-item">
+                <a href="{{ path('app_dashboard_news_index') }}" class="sidebar-link {% if 'news' in app.request.get('_route') and 'category' not in app.request.get('_route') %}active{% endif %}">
+                    <i class="bi bi-newspaper"></i> <span>Actualités</span>
+                </a>
+            </div>
+            <div class="sidebar-item">
+                <a href="{{ path('app_dashboard_testimonial_index') }}" class="sidebar-link {% if 'testimonial' in app.request.get('_route') %}active{% endif %}">
+                    <i class="bi bi-chat-quote-fill"></i> <span>Témoignages</span>
+                </a>
+            </div>
+            <div class="sidebar-item">
+                <a href="{{ path('app_dashboard_slide_index') }}" class="sidebar-link {% if 'slide' in app.request.get('_route') %}active{% endif %}">
+                    <i class="bi bi-images"></i> <span>Slider</span>
+                </a>
+            </div>
+
+            <div class="sidebar-section-title">Système</div>
+            <div class="sidebar-item">
+                <a href="{{ path('app_dashboard_partner_index') }}" class="sidebar-link {% if 'partner' in app.request.get('_route') %}active{% endif %}">
+                    <i class="bi bi-people-fill"></i> <span>Partenaires</span>
+                </a>
+            </div>
+            <div class="sidebar-item">
+                <a href="{{ path('app_dashboard_pays_index') }}" class="sidebar-link {% if 'pays' in app.request.get('_route') %}active{% endif %}">
+                    <i class="bi bi-globe"></i> <span>Pays</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="gp-content">
+        {% block dashboard_body %}{% endblock %}
+    </main>
+</div>
+{% endblock %}

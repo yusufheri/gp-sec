@@ -1,46 +1,57 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboard_base.html.twig' %}
 
-{% block title %}Partner index{% endblock %}
+{% block title %}Gestion des Partenaires | GP-SEC{% endblock %}
 
-{% block body %}
-    <div class="container u-margin-top-small u-bgcolor-container">
-        <div class="row">
-            <div class="col-md">
-                <h1 class="u-margin-top-small">Nos Partenaires ({{ partners|length }})</h1>
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>N°</th>
-                            <th width="50%">Partenaires</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for k, partner in partners %}
-                        <tr>
-                            <td>{{ k + 1 }}</td>
-                            <td>
-                                <div class="d-flex">
-                                    <img src="{{ asset('media/pictures/'~partner.picture )|imagine_filter('my_thumb') }}" class="img-fluid" alt="{{ partner.name }}" srcset="">
-                                    {{ partner.name }}
-                                </div>
-                            </td>
-                            <td>
-                                <a href="{{ path('app_dashboard_partner_show', {'id': partner.id}) }}" class="btn btn--blue"><i class="fa fa-eye"></i></a>
-                                <a href="{{ path('app_dashboard_partner_edit', {'id': partner.id}) }}" class="btn btn--red"><i class="fa fa-edit"></i></a>
-                            </td>
-                        </tr>
-                    {% else %}
-                        <tr>
-                            <td colspan="6">no records found</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-
-                <a href="{{ path('app_dashboard_partner_new') }}" class="btn btn--red u-margin-bottom-small"><i class="fa fa-plus"></i> Nouveau partenaire</a>            
-            </div>
+{% block dashboard_body %}
+<div class="dashboard-table-card">
+    <div class="dashboard-table-card__header">
+        <h2><i class="bi bi-people me-2"></i> Nos Partenaires ({{ partners|length }})</h2>
+        <a href="{{ path('app_dashboard_partner_new') }}" class="btn btn-danger btn-sm">
+            <i class="bi bi-plus-circle me-1"></i> Nouveau Partenaire
+        </a>
+    </div>
+    <div class="dashboard-table-card__body">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="bg-light">
+                    <tr>
+                        <th class="ps-4">N°</th>
+                        <th>Logo & Nom</th>
+                        <th class="text-end pe-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for k, partner in partners %}
+                    <tr>
+                        <td class="ps-4 text-muted">{{ k + 1 }}</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                {% if partner.picture %}
+                                    <img src="{{ asset('media/pictures/'~partner.picture )|imagine_filter('my_thumb') }}" class="rounded shadow-sm me-3" style="width: 50px; height: 40px; object-fit: contain; background: #f8f9fa;" alt="{{ partner.name }}">
+                                {% else %}
+                                    <div class="bg-light rounded me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 40px;"><i class="bi bi-image text-muted"></i></div>
+                                {% endif %}
+                                <div class="fw-bold text-dark">{{ partner.name }}</div>
+                            </div>
+                        </td>
+                        <td class="text-end pe-4">
+                            <div class="btn-group">
+                                <a href="{{ path('app_dashboard_partner_show', {'id': partner.id}) }}" class="btn btn-sm btn-outline-primary" title="Voir"><i class="bi bi-eye"></i></a>
+                                <a href="{{ path('app_dashboard_partner_edit', {'id': partner.id}) }}" class="btn btn-sm btn-outline-secondary" title="Modifier"><i class="bi bi-pencil"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center py-5">
+                            <i class="bi bi-people text-muted" style="font-size: 3rem;"></i>
+                            <p class="mt-3 text-muted">Aucun partenaire enregistré.</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 {% endblock %}
