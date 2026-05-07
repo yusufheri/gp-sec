@@ -1,11 +1,20 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboard_base.html.twig' %}
 
-{% block title %}New Slide{% endblock %}
+{% block title %}Nouveau Slide | GP-SEC{% endblock %}
 
-{% block body %}
-    <h1>Create new Slide</h1>
+{% block dashboard_body %}
+<div class="dashboard-header">
+    <h1>Ajouter un Slide</h1>
+    <p>Créez un nouveau visuel pour le carrousel de la page d'accueil.</p>
+</div>
 
+<div class="gp-card">
     {{ include('dashboard/slide/_form.html.twig') }}
-
-    <a  href="{{ path('app_dashboard_slide_index') }}">Affichier la liste</a>
+    
+    <div class="mt-4">
+        <a href="{{ path('app_dashboard_slide_index') }}" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Retour à la liste
+        </a>
+    </div>
+</div>
 {% endblock %}

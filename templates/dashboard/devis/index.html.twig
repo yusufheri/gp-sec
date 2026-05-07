@@ -1,47 +1,73 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboard_base.html.twig' %}
 
-{% block title %}Devis index{% endblock %}
+{% block title %}Liste des Devis | GP-SEC{% endblock %}
 
-{% block body %}
-<div class="container">
-    <div class="row">
-        <div class="col-md">
-            <h1>Devis</h1><hr>
+{% block dashboard_body %}
+<style>
+    .gp-card {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        border: 1px solid rgba(0,0,0,0.03);
+        padding: 1.5rem;
+    }
+    .table-gp {
+        margin-bottom: 0;
+    }
+    .table-gp thead th {
+        background: #f8f9fa;
+        color: var(--gp-blue-dark);
+        border-bottom: 2px solid #eee;
+        padding: 1rem;
+    }
+    .table-gp tbody td {
+        padding: 1rem;
+        border-bottom: 1px solid #eee;
+    }
+</style>
 
-            <table class="table table-stripped">
-                <thead>
-                    <tr>
-                        <th>N°</th>
-                        <th>Reçu le</th>
-                        <th>Noms</th>
-                        <th>Email</th>
-                        <th>Ville</th>
-                        <th>Description</th>
-                        <th width="15%"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for devi in devis %}
-                    <tr>
-                        <td>{{ devi.id }}</td>
-                        <td>{{ devi.createdAt ? devi.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                        <td>{{ devi.name|capitalize }} {{ devi.lastname|capitalize }}</td>
-                        <td>{{ devi.email|lower }}</td>
-                        <td>{{ devi.ville|capitalize }} / {{ devi.pays.name }}</td>
-                        <td>{{ devi.description|extractText(75) }}</td>
-                        <td>
-                            <a href="{{ path('app_dashboard_devis_show', {'id': devi.id}) }}" class="btn btn--blue"><i class="fa fa-eye"></i> Voir plus</a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="11">no records found</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        
-        </div>
+<div class="dashboard-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1>Liste des Devis</h1>
+        <p>Gérez les demandes reçues via le site.</p>
+    </div>
+</div>
+
+<div class="gp-card">
+    <div class="table-responsive">
+        <table class="table table-gp align-middle">
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Date</th>
+                    <th>Client</th>
+                    <th>Ville</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for devi in devis %}
+                <tr>
+                    <td><strong>#{{ devi.id }}</strong></td>
+                    <td>{{ devi.createdAt ? devi.createdAt|date('d/m/Y H:i') : '' }}</td>
+                    <td>
+                        <div class="fw-bold">{{ devi.name|capitalize }} {{ devi.lastname|capitalize }}</div>
+                        <small class="text-muted">{{ devi.email }}</small>
+                    </td>
+                    <td>{{ devi.ville|capitalize }} / {{ devi.pays.name }}</td>
+                    <td>
+                        <a href="{{ path('app_dashboard_devis_show', {'id': devi.id}) }}" class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-eye"></i> Voir
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center py-4 text-muted">Aucun devis trouvé.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
 {% endblock %}

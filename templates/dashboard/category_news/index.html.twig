@@ -1,42 +1,47 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboard_base.html.twig' %}
 
-{% block title %}CategoryNews index{% endblock %}
+{% block title %}Catégories News | GP-SEC{% endblock %}
 
-{% block body %}
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md">
-                <h1>Catégorie des News</h1>
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for category_news in category_news %}
-                        <tr>
-                            <td>{{ category_news.id }}</td>
-                            <td>{{ category_news.name }}</td>
-                            <td>
-                                <a href="{{ path('app_dashboard_category_news_show', {'id': category_news.id}) }}" class="btn btn--red"><i class="fa fa-eye"></i></a>
-                                <a href="{{ path('app_dashboard_category_news_edit', {'id': category_news.id}) }}" class="btn btn--blue"><i class="fa fa-edit"></i></a>
-                            </td>
-                        </tr>
-                    {% else %}
-                        <tr>
-                            <td colspan="3">no records found</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-
-                <a href="{{ path('app_dashboard_category_news_new') }}" class="btn btn--red u-margin-bottom-small"><i class="fa fa-plus"></i> Nouvelle</a>            
-            </div>
-        </div>
+{% block dashboard_body %}
+<div class="dashboard-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1>Catégories News ({{ category_news|length }})</h1>
+        <p>Gérez les thématiques de vos articles d'actualité.</p>
     </div>
+    <a href="{{ path('app_dashboard_category_news_new') }}" class="btn btn-danger">
+        <i class="bi bi-plus-circle me-1"></i> Nouvelle Catégorie
+    </a>
+</div>
+
+<div class="gp-card">
+    <div class="table-responsive">
+        <table class="table table-gp align-middle">
+            <thead>
+                <tr>
+                    <th width="10%">ID</th>
+                    <th>Nom de la thématique</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for cat in category_news %}
+                <tr>
+                    <td><span class="badge bg-light text-dark">#{{ cat.id }}</span></td>
+                    <td class="fw-bold text-danger">{{ cat.name }}</td>
+                    <td class="text-end">
+                        <div class="btn-group">
+                            <a href="{{ path('app_dashboard_category_news_show', {'id': cat.id}) }}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></a>
+                            <a href="{{ path('app_dashboard_category_news_edit', {'id': cat.id}) }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center py-4 text-muted">Aucune catégorie news trouvée.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

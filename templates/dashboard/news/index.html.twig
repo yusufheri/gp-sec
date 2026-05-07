@@ -1,50 +1,58 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboard_base.html.twig' %}
 
-{% block title %}News index{% endblock %}
+{% block title %}Actualités | GP-SEC{% endblock %}
 
-{% block body %}
-    <div class="container u-margin-top-small">
-        <div class="row">
-            <div class="col-md">
-                <h1>News index</h1>
-
-                <table class="table table-stripped">
-                    <thead>
-                        <tr>
-                            <th>N°</th>
-                            <th>Publié </th>
-                            <th width="30%">Titre</th>                            
-                            <th>Description</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for k,n in news %}
-                        <tr>
-                            <td>{{ k+1 }}</td>
-                            <td>{{ n.publiedAt ? n.publiedAt|date('Y-m-d H:i:s') : '' }}</td>
-                            <td>
-                                <div class="d-flex">
-                                    <img src="{{ asset('media/pictures/'~n.picture )|imagine_filter('my_thumb') }}" class="img-fluid" alt="{{ n.name }}" srcset="">
-                                    {{ n.name }}
-                                </div>
-                             </td>
-                            <td>{{ n.description|extractText(200) }}</td>
-                            <td>
-                                <a href="{{ path('app_dashboard_news_show', {'id': n.id}) }}" class="btn btn--red"><i class="fa fa-eye"></i></a>
-                                <a href="{{ path('app_dashboard_news_edit', {'id': n.id}) }}" class="btn btn--red"><i class="fa fa-edit"></i></a>
-                            </td>
-                        </tr>
-                    {% else %}
-                        <tr>
-                            <td colspan="7">no records found</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-
-                <a href="{{ path('app_dashboard_news_new') }}" class="btn btn--red u-margin-bottom-small"><i class="fa fa-plus"></i> Create new</a>            
-            </div>
-        </div>
+{% block dashboard_body %}
+<div class="dashboard-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1>Actualités ({{ news|length }})</h1>
+        <p>Gérez les articles et annonces publiés sur le site.</p>
     </div>
+    <a href="{{ path('app_dashboard_news_new') }}" class="btn btn-danger">
+        <i class="bi bi-plus-circle me-1"></i> Nouvel Article
+    </a>
+</div>
+
+<div class="gp-card">
+    <div class="table-responsive">
+        <table class="table table-gp align-middle">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Image & Titre</th>
+                    <th>Extrait</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for k, n in news %}
+                <tr>
+                    <td><small class="text-muted">{{ n.publiedAt ? n.publiedAt|date('d/m/Y') : 'Non publié' }}</small></td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            {% if n.picture %}
+                                <img src="{{ asset('media/pictures/'~n.picture )|imagine_filter('my_thumb') }}" class="rounded shadow-sm me-3" style="width: 60px; height: 40px; object-fit: cover;" alt="{{ n.name }}">
+                            {% else %}
+                                <div class="bg-light rounded me-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 40px;"><i class="bi bi-image text-muted"></i></div>
+                            {% endif %}
+                            <div class="fw-bold">{{ n.name|extractText(40) }}</div>
+                        </div>
+                    </td>
+                    <td class="text-muted"><small>{{ n.description|extractText(100) }}</small></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="{{ path('app_dashboard_news_show', {'id': n.id}) }}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></a>
+                            <a href="{{ path('app_dashboard_news_edit', {'id': n.id}) }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="text-center py-4 text-muted">Aucune actualité trouvée.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

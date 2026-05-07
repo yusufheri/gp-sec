@@ -1,41 +1,47 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboard_base.html.twig' %}
 
-{% block title %}Pays index{% endblock %}
+{% block title %}Gestion des Pays | GP-SEC{% endblock %}
 
-{% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md">
-                <h1>Pays </h1>
-
-                <table class="table table-stripped">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for pay in pays %}
-                        <tr>
-                            <td>{{ pay.id }}</td>
-                            <td>{{ pay.name }}</td>
-                            <td>
-                                <a href="{{ path('app_dashboard_pays_show', {'id': pay.id}) }}" class="btn btn--red"><i class="fa fa-eye"></i></a>
-                                <a href="{{ path('app_dashboard_pays_edit', {'id': pay.id}) }}" class="btn btn--blue"><i class="fa fa-edit"></i></a>
-                            </td>
-                        </tr>
-                    {% else %}
-                        <tr>
-                            <td colspan="3">no records found</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-
-                <a href="{{ path('app_dashboard_pays_new') }}" class="btn btn--red u-margin-bottom-small"><i class="fa fa-plus"></i> Nouveau</a>            
-            </div>
-        </div>
+{% block dashboard_body %}
+<div class="dashboard-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1>Liste des Pays ({{ pays|length }})</h1>
+        <p>Gérez les pays d'origine de vos clients et partenaires.</p>
     </div>
+    <a href="{{ path('app_dashboard_pays_new') }}" class="btn btn-danger">
+        <i class="bi bi-plus-circle me-1"></i> Nouveau Pays
+    </a>
+</div>
+
+<div class="gp-card">
+    <div class="table-responsive">
+        <table class="table table-gp align-middle">
+            <thead>
+                <tr>
+                    <th width="10%">ID</th>
+                    <th>Nom du Pays</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for pay in pays %}
+                <tr>
+                    <td><span class="badge bg-light text-dark">#{{ pay.id }}</span></td>
+                    <td class="fw-bold">{{ pay.name }}</td>
+                    <td class="text-end">
+                        <div class="btn-group">
+                            <a href="{{ path('app_dashboard_pays_show', {'id': pay.id}) }}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></a>
+                            <a href="{{ path('app_dashboard_pays_edit', {'id': pay.id}) }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center py-4 text-muted">Aucun pays enregistré.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

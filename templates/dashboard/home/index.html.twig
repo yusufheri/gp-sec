@@ -1,29 +1,84 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboard_base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Dashboard | GP-SEC{% endblock %}
 
-{% block body %}
-<div class="container u-margin-top-small u-margin-bottom-small">
-    <div class="row">
-        <div class="col-md">
-            <div class="navigation">
-                <ul class="navigation__list">
-                <li class="navigation__item"><a href="{{ path('app_dashboard_slide_index') }}" class="navigation__link"><span>01</span>Slider</a></li>
-                    <li class="navigation__item"><a href="{{ path('app_dashboard_partner_index') }}" class="navigation__link"><span>02</span>Partenaires</a></li>
-                    <li class="navigation__item"><a href="{{ path('app_dashboard_client_index') }}" class="navigation__link"><span>03</span>Clients</a></li>
-                    <li class="navigation__item"><a href="{{ path('app_dashboard_category_product_index') }}"  class="navigation__link"><span>04</span>Catégorie produits</a></li>
-                    <li class="navigation__item"><a href="{{ path('app_dashboard_category_news_index') }}"  class="navigation__link"><span>05</span>Catégorie News</a></li>
-                    <li class="navigation__item"><a href="{{ path('app_dashboard_testimonial_index') }}"  class="navigation__link"><span>06</span>Témoignages des clients</a></li>
-                    <li class="navigation__item"><a href="{{ path('app_dashboard_service_index') }}"  class="navigation__link"><span>07</span>Nos Services</a></li>
-                    <li class="navigation__item"><a href="{{ path('app_dashboard_product_index') }}"  class="navigation__link"><span>08</span>Nos produits</a></li>
-                    <li class="navigation__item"><a href="{{ path('app_dashboard_news_index') }}"  class="navigation__link"><span>09</span>News</a></li>
-                    <hr>
-                    
-                    <li class="navigation__item"><a href="{{ path('app_dashboard_devis_index') }}"  class="navigation__link"><span>10</span>Liste des devis</a></li>
-                    <li class="navigation__item"><a href="{{ path('app_dashboard_pays_index') }}"  class="navigation__link"><span>11</span>Liste des pays</a></li>
-                </ul>            
-            </div>
+{% block dashboard_body %}
+<div class="dashboard-header">
+    <h1>Tableau de Bord</h1>
+    <p>Bienvenue sur votre espace d'administration GP-SEC.</p>
+</div>
+
+{# --- STATS CARDS --- #}
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon icon-red">
+            <i class="bi bi-file-earmark-text"></i>
+        </div>
+        <div class="stat-info">
+            <span class="label">Devis Reçus</span>
+            <span class="value">{{ count_devis }}</span>
         </div>
     </div>
+
+    <div class="stat-card">
+        <div class="stat-icon icon-blue">
+            <i class="bi bi-box-seam"></i>
+        </div>
+        <div class="stat-info">
+            <span class="label">Produits</span>
+            <span class="value">{{ count_products }}</span>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon icon-orange">
+            <i class="bi bi-newspaper"></i>
+        </div>
+        <div class="stat-info">
+            <span class="label">Actualités</span>
+            <span class="value">{{ count_news }}</span>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon icon-blue">
+            <i class="bi bi-people"></i>
+        </div>
+        <div class="stat-info">
+            <span class="label">Clients</span>
+            <span class="value">{{ count_clients }}</span>
+        </div>
+    </div>
+</div>
+
+{# --- QUICK ACCESS GRID --- #}
+<div class="dashboard-header mt-5">
+    <h2>Actions Rapides</h2>
+</div>
+
+<div class="action-grid">
+    <a href="{{ path('app_dashboard_devis_index') }}" class="action-card">
+        <div class="action-icon"><i class="bi bi-file-earmark-text"></i></div>
+        <h3>Gérer les Devis</h3>
+        <p>Consultez et traitez les demandes de devis.</p>
+    </a>
+
+    <a href="{{ path('app_dashboard_product_index') }}" class="action-card">
+        <div class="action-icon"><i class="bi bi-cart-plus"></i></div>
+        <h3>Produits</h3>
+        <p>Gérez votre catalogue de produits.</p>
+    </a>
+
+    <a href="{{ path('app_dashboard_news_index') }}" class="action-card">
+        <div class="action-icon"><i class="bi bi-megaphone"></i></div>
+        <h3>Actualités</h3>
+        <p>Publiez des news sur le site.</p>
+    </a>
+
+    <a href="{{ path('app_dashboard_slide_index') }}" class="action-card">
+        <div class="action-icon"><i class="bi bi-images"></i></div>
+        <h3>Slider Accueil</h3>
+        <p>Modifiez les images du carrousel.</p>
+    </a>
 </div>
 {% endblock %}

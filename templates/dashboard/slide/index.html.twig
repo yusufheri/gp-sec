@@ -1,33 +1,56 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboard_base.html.twig' %}
 
-{% block title %}Slide index{% endblock %}
+{% block title %}Gestion du Slider | GP-SEC{% endblock %}
 
-{% block body %}
-    <h1>Slide index</h1>
+{% block dashboard_body %}
+<div class="dashboard-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1>Gestion du Slider ({{ slides|length }})</h1>
+        <p>Gérez les images et les messages du carrousel de la page d'accueil.</p>
+    </div>
+    <a href="{{ path('app_dashboard_slide_new') }}" class="btn btn-danger">
+        <i class="bi bi-plus-circle me-1"></i> Nouveau Slide
+    </a>
+</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for slide in slides %}
-            <tr>
-                <td>{{ slide.title }}  {{ slide.urlButton }}</td>
-                <td>
-                    <a href="{{ path('app_dashboard_slide_show', {'id': slide.id}) }}">show</a>
-                    <a href="{{ path('app_dashboard_slide_edit', {'id': slide.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a class="btn btn-danger" href="{{ path('app_dashboard_slide_new') }}">Create new</a>
+<div class="gp-card">
+    <div class="table-responsive">
+        <table class="table table-gp align-middle">
+            <thead>
+                <tr>
+                    <th>Aperçu & Titre</th>
+                    <th>Lien Bouton</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for slide in slides %}
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            {% if slide.picture %}
+                                <img src="{{ asset('media/pictures/'~slide.picture )|imagine_filter('my_thumb') }}" class="rounded shadow-sm me-3" style="width: 100px; height: 50px; object-fit: cover;" alt="{{ slide.title }}">
+                            {% else %}
+                                <div class="bg-light rounded me-3 d-flex align-items-center justify-content-center" style="width: 100px; height: 50px;"><i class="bi bi-image text-muted"></i></div>
+                            {% endif %}
+                            <div class="fw-bold">{{ slide.title|extractText(50) }}</div>
+                        </div>
+                    </td>
+                    <td><small class="text-muted">{{ slide.urlButton }}</small></td>
+                    <td class="text-end">
+                        <div class="btn-group">
+                            <a href="{{ path('app_dashboard_slide_show', {'id': slide.id}) }}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></a>
+                            <a href="{{ path('app_dashboard_slide_edit', {'id': slide.id}) }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center py-4 text-muted">Aucun slide configuré.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

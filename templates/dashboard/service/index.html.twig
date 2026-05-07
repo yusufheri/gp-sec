@@ -1,45 +1,49 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboard_base.html.twig' %}
 
-{% block title %}Service index{% endblock %}
+{% block title %}Nos Services | GP-SEC{% endblock %}
 
-{% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md">
-                <h1 class="u-margin-top-small">Nos services ({{ services|length }})</h1> <hr>
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>N°</th>
-                            <th>Services</th>
-                            <th>Description</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for k, service in services %}
-                        <tr>
-                            <td>{{ k+1 }}</td>
-                            <td>{{ service.name }}</td>
-                            <td>{{ service.description }}</td>
-                            <td>{{ service.picture }}</td>
-                            <td>
-                                <a href="{{ path('app_dashboard_service_show', {'id': service.id}) }}" class="btn btn--red "><i class="fa fa-eye"></i></a>
-                                <a href="{{ path('app_dashboard_service_edit', {'id': service.id}) }}" class="btn btn--blue "><i class="fa fa-edit"></i></a>
-                            </td>
-                        </tr>
-                    {% else %}
-                        <tr>
-                            <td colspan="6">no records found</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-
-                <a href="{{ path('app_dashboard_service_new') }}" class="btn btn--red u-margin-bottom-small"><i class="fa fa-plus"></i> Nouveau service</a>
-
-            </div>
-        </div>
+{% block dashboard_body %}
+<div class="dashboard-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1>Nos Services ({{ services|length }})</h1>
+        <p>Gérez les services et prestations offerts par GP-SEC.</p>
     </div>
+    <a href="{{ path('app_dashboard_service_new') }}" class="btn btn-danger">
+        <i class="bi bi-plus-circle me-1"></i> Nouveau Service
+    </a>
+</div>
+
+<div class="gp-card">
+    <div class="table-responsive">
+        <table class="table table-gp align-middle">
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Nom du Service</th>
+                    <th>Description</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for k, service in services %}
+                <tr>
+                    <td><span class="badge bg-light text-dark">{{ k + 1 }}</span></td>
+                    <td class="fw-bold text-primary">{{ service.name }}</td>
+                    <td class="text-muted"><small>{{ service.description|extractText(100) }}</small></td>
+                    <td class="text-end">
+                        <div class="btn-group">
+                            <a href="{{ path('app_dashboard_service_show', {'id': service.id}) }}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></a>
+                            <a href="{{ path('app_dashboard_service_edit', {'id': service.id}) }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="text-center py-4 text-muted">Aucun service trouvé.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}
