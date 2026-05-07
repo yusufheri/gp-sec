@@ -1,53 +1,61 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboard_base.html.twig' %}
 
-{% block title %}Client index{% endblock %}
+{% block title %}Gestion des Clients | GP-SEC{% endblock %}
 
-{% block body %}
-
-    <div class="container u-margin-top-small">
-        <div class="row">
-            <div class="col-md">
-                <h1>Nos Clients ({{ clients|length }})</h1> <hr>
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>N°</th>
-                            <th>Name</th>
-                            <th>Website</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for k, client in clients %}
-                        <tr>
-                            <td>{{ k+1 }}</td>
-                            <td>
-                                <div class="d-flex">
-                                    <img src="{{ asset('media/pictures/'~client.picture )|imagine_filter('my_thumb') }}" class="img-fluid rounded" alt="{{ client.name }}" srcset="">
-                                    {{ client.name }}
-                                </div>
-                            </td>
-                            <td>{{ client.website }}</td>
-                            <td>{{ client.email }}</td>
-                            <td>{{ client.phone }}</td>
-                            <td>
-                                <a href="{{ path('app_dashboard_client_show', {'id': client.id}) }}" class="btn btn--red"><i class="fa fa-eye"></i></a>
-                                <a href="{{ path('app_dashboard_client_edit', {'id': client.id}) }}" class="btn btn--blue"><i class="fa fa-edit"></i></a>
-                            </td>
-                        </tr>
-                    {% else %}
-                        <tr>
-                            <td colspan="8">no records found</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-
-                <a href="{{ path('app_dashboard_client_new') }}" class="btn btn--red u-margin-bottom-small"><i class="fa fa-plus"></i> Nouveau client</a>            
-            </div>
-        </div>
+{% block dashboard_body %}
+<div class="dashboard-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1>Nos Clients ({{ clients|length }})</h1>
+        <p>Gérez la liste de vos clients et leurs informations de contact.</p>
     </div>
+    <a href="{{ path('app_dashboard_client_new') }}" class="btn btn-danger">
+        <i class="bi bi-person-plus-fill me-1"></i> Nouveau Client
+    </a>
+</div>
+
+<div class="gp-card">
+    <div class="table-responsive">
+        <table class="table table-gp align-middle">
+            <thead>
+                <tr>
+                    <th>Logo & Nom</th>
+                    <th>Email / Site Web</th>
+                    <th>Téléphone</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for k, client in clients %}
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            {% if client.picture %}
+                                <img src="{{ asset('media/pictures/'~client.picture )|imagine_filter('my_thumb') }}" class="rounded shadow-sm me-3" style="width: 50px; height: 40px; object-fit: contain; background: #f8f9fa;" alt="{{ client.name }}">
+                            {% else %}
+                                <div class="bg-light rounded me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 40px;"><i class="bi bi-person text-muted"></i></div>
+                            {% endif %}
+                            <div class="fw-bold">{{ client.name }}</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-dark small">{{ client.email }}</div>
+                        <div class="text-muted small"><i class="bi bi-link-45deg"></i> {{ client.website }}</div>
+                    </td>
+                    <td><small>{{ client.phone }}</small></td>
+                    <td class="text-end">
+                        <div class="btn-group">
+                            <a href="{{ path('app_dashboard_client_show', {'id': client.id}) }}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></a>
+                            <a href="{{ path('app_dashboard_client_edit', {'id': client.id}) }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="text-center py-4 text-muted">Aucun client trouvé.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

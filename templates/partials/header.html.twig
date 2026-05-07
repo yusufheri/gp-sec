@@ -34,9 +34,13 @@
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
       {% if app.user is not null %}
-        <a href="{{ path('app_logout') }}" class="btn btn--red btn-get-started  animate__animated animate__fadeInUp"><i class="fa fa-lock"></i> Se deconncter</a>
+        <a href="{{ path('app_logout') }}" class="btn btn-danger btn-sm px-3 rounded-pill animate__animated animate__fadeInUp">
+          Déconnexion
+        </a>
       {% else %}
-        <a href="{{ path('app_customer_devis') }}" class="btn btn--red btn-get-started  animate__animated animate__fadeInUp">Demander un devis</a>
+        <a href="{{ path('app_customer_devis') }}" class="btn btn-danger btn-sm px-3 rounded-pill animate__animated animate__fadeInUp">
+          Demander un devis
+        </a>
       {% endif %}      
     </div>
   </header>

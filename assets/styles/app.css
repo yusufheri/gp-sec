@@ -3013,3 +3013,20 @@ section {
 }
 
 /*# sourceMappingURL=app.css.map */
+/* Prevent any JS/CSS animation conflict during filtering */
+body.filtering-active [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    visibility: visible !important;
+}
+
+body.filtering-active .aos-init {
+    transition: none !important;
+}
+
+.portfolio-container {
+    width: 100% !important;
+    min-height: 400px;
+    position: relative;
+}

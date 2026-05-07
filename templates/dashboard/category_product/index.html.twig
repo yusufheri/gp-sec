@@ -1,41 +1,49 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboard_base.html.twig' %}
 
-{% block title %}CategoryProduct index{% endblock %}
+{% block title %}Catégories Produits | GP-SEC{% endblock %}
 
-{% block body %}
-    <div class="container">
-        <div class="row">
-            <h1 class="u-margin-top-small">Catégorie Produit</h1><hr>
-
-            <table class="table table-stripped">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for category_product in category_products %}
-                    <tr>
-                        <td>{{ category_product.id }}</td>
-                        <td>{{ category_product.name }}</td>
-                        <td>{{ category_product.description }}</td>
-                        <td>
-                            <a  class="btn btn--red" href="{{ path('app_dashboard_category_product_show', {'id': category_product.id}) }}"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn--red"  href="{{ path('app_dashboard_category_product_edit', {'id': category_product.id}) }}"><i class="fa fa-edit"></i></a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="4">no records found</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>       
-        </div>
+{% block dashboard_body %}
+<div class="dashboard-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1>Catégories Produits ({{ category_products|length }})</h1>
+        <p>Gérez les groupes de produits pour faciliter la navigation.</p>
     </div>
+    <a href="{{ path('app_dashboard_category_product_new') }}" class="btn btn-danger">
+        <i class="bi bi-plus-circle me-1"></i> Nouvelle Catégorie
+    </a>
+</div>
 
-    <a href="{{ path('app_dashboard_category_product_new') }}" class="btn btn--red u-margin-bottom-small" ><i class="fa fa-plus"></i> Nouvelle</a>
+<div class="gp-card">
+    <div class="table-responsive">
+        <table class="table table-gp align-middle">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom de la catégorie</th>
+                    <th>Description</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for category_product in category_products %}
+                <tr>
+                    <td><span class="badge bg-light text-dark">#{{ category_product.id }}</span></td>
+                    <td class="fw-bold text-primary">{{ category_product.name }}</td>
+                    <td class="text-muted"><small>{{ category_product.description|extractText(100) }}</small></td>
+                    <td class="text-end">
+                        <div class="btn-group">
+                            <a href="{{ path('app_dashboard_category_product_show', {'id': category_product.id}) }}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></a>
+                            <a href="{{ path('app_dashboard_category_product_edit', {'id': category_product.id}) }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="text-center py-4 text-muted">Aucune catégorie trouvée.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

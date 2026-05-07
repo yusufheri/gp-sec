@@ -1,17 +1,19 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboard_base.html.twig' %}
 
-{% block title %}New Client{% endblock %}
+{% block title %}Nouveau Client | GP-SEC{% endblock %}
 
-{% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md">
-                <h1>NouveauClient</h1>
+{% block dashboard_body %}
+<div class="dashboard-header">
+    <h1>Ajouter un Client</h1>
+    <p>Enregistrez un nouveau client partenaire.</p>
+</div>
 
-                {{ include('dashboard/client/_form.html.twig') }}
-
-                <a href="{{ path('app_dashboard_client_index') }}" class="u-margin-top-small u-margin-bottom-small ">back to list</a>            
-            </div>
-        </div>
+<div class="gp-card">
+    {{ include('dashboard/client/_form.html.twig') }}
+    
+    <div class="mt-4">
+        <a href="{{ path('app_dashboard_client_index') }}" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Retour à la liste
+        </a>
     </div>
 {% endblock %}

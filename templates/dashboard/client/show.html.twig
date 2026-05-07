@@ -1,48 +1,67 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboard_base.html.twig' %}
 
-{% block title %}Client{% endblock %}
+{% block title %}Client : {{ client.name }} | GP-SEC{% endblock %}
 
-{% block body %}
-    <div class="container">
-        <h1>Client</h1>
-
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ client.id }}</td>
-                </tr>
-                <tr>
-                    <th>Name</th>
-                    <td>{{ client.name }}</td>
-                </tr>
-                <tr>
-                    <th>Picture</th>
-                    <td>{{ client.picture }}</td>
-                </tr>
-                <tr>
-                    <th>UpdatedAt</th>
-                    <td>{{ client.updatedAt ? client.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                </tr>
-                <tr>
-                    <th>Website</th>
-                    <td>{{ client.website }}</td>
-                </tr>
-                <tr>
-                    <th>Email</th>
-                    <td>{{ client.email }}</td>
-                </tr>
-                <tr>
-                    <th>Phone</th>
-                    <td>{{ client.phone }}</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <a href="{{ path('app_dashboard_client_index') }}">back to list</a>
-
-        <a href="{{ path('app_dashboard_client_edit', {'id': client.id}) }}">edit</a>
-
-        {{ include('dashboard/client/_delete_form.html.twig') }}    
+{% block dashboard_body %}
+<div class="dashboard-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1>Détails du Client</h1>
+        <p>Consultation de la fiche client partenaire.</p>
     </div>
+    <div>
+        <a href="{{ path('app_dashboard_client_index') }}" class="btn btn-outline-secondary me-2">
+            <i class="bi bi-arrow-left"></i> Retour
+        </a>
+        <a href="{{ path('app_dashboard_client_edit', {'id': client.id}) }}" class="btn btn-danger">
+            <i class="bi bi-pencil-square me-1"></i> Modifier
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="gp-card text-center">
+            {% if client.picture %}
+                <img src="{{ asset('media/pictures/'~client.picture)|imagine_filter('my_thumb') }}" class="img-fluid rounded shadow-sm mb-3" style="max-height: 200px; object-fit: contain; background: #f8f9fa; padding: 15px;" alt="{{ client.name }}">
+            {% else %}
+                <div class="bg-light rounded mb-3 d-flex align-items-center justify-content-center mx-auto" style="width: 150px; height: 120px;"><i class="bi bi-person-badge text-muted display-1"></i></div>
+            {% endif %}
+            <h4 class="fw-bold">{{ client.name }}</h4>
+            <span class="badge bg-light text-dark border">ID: #{{ client.id }}</span>
+        </div>
+    </div>
+    
+    <div class="col-lg-8">
+        <div class="gp-card">
+            <h5 class="mb-4 text-primary border-bottom pb-2"><i class="bi bi-info-circle me-2"></i>Informations de contact</h5>
+            <table class="table table-borderless align-middle">
+                <tbody>
+                    <tr>
+                        <th width="30%" class="text-muted small">EMAIL</th>
+                        <td><a href="mailto:{{ client.email }}" class="text-decoration-none fw-bold">{{ client.email|default('N/A') }}</a></td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted small">TÉLÉPHONE</th>
+                        <td><a href="tel:{{ client.phone }}" class="text-decoration-none fw-bold">{{ client.phone|default('N/A') }}</a></td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted small">SITE WEB</th>
+                        <td>
+                            {% if client.website %}
+                                <a href="{{ client.website }}" target="_blank" class="text-decoration-none"><i class="bi bi-link-45deg"></i> {{ client.website }}</a>
+                            {% else %}
+                                <span class="text-muted">N/A</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="mt-5 pt-3 border-top d-flex justify-content-between align-items-center">
+                <span class="small text-muted">Dernière mise à jour : {{ client.updatedAt ? client.updatedAt|date('d/m/Y à H:i') : 'N/A' }}</span>
+                {{ include('dashboard/client/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

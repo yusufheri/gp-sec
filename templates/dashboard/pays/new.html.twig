@@ -1,17 +1,20 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboard_base.html.twig' %}
 
-{% block title %}New Pays{% endblock %}
+{% block title %}Nouveau Pays | GP-SEC{% endblock %}
 
-{% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md">
-                <h1>Create new Pays</h1>
+{% block dashboard_body %}
+<div class="dashboard-header">
+    <h1>Ajouter un Pays</h1>
+    <p>Enregistrez un nouveau pays dans la base de données.</p>
+</div>
 
-                {{ include('dashboard/pays/_form.html.twig') }}
-
-                <a href="{{ path('app_dashboard_pays_index') }}" class="btn btn--white u-margin-bottom-small">back to list</a>            
-            </div>
-        </div>
+<div class="gp-card">
+    {{ include('dashboard/pays/_form.html.twig') }}
+    
+    <div class="mt-4">
+        <a href="{{ path('app_dashboard_pays_index') }}" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Retour à la liste
+        </a>
     </div>
+</div>
 {% endblock %}

@@ -1,48 +1,50 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboard_base.html.twig' %}
 
-{% block title %}Testimonial{% endblock %}
+{% block title %}Témoignage : {{ testimonial.name }} | GP-SEC{% endblock %}
 
-{% block body %}
-    <div class="container u-margin-top-small">
-        <div class="row">
-            <div class="col-md">
-                <h1>Testimonial</h1>
+{% block dashboard_body %}
+<div class="dashboard-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1>Aperçu du Témoignage</h1>
+        <p>Visualisation de l'avis client enregistré.</p>
+    </div>
+    <div>
+        <a href="{{ path('app_dashboard_testimonial_index') }}" class="btn btn-outline-secondary me-2">
+            <i class="bi bi-arrow-left"></i> Retour
+        </a>
+        <a href="{{ path('app_dashboard_testimonial_edit', {'id': testimonial.id}) }}" class="btn btn-danger">
+            <i class="bi bi-pencil-square me-1"></i> Modifier
+        </a>
+    </div>
+</div>
 
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th>Id</th>
-                            <td>{{ testimonial.id }}</td>
-                        </tr>
-                        <tr>
-                            <th>Name</th>
-                            <td>{{ testimonial.name }}</td>
-                        </tr>
-                        <tr>
-                            <th>Grade</th>
-                            <td>{{ testimonial.grade }}</td>
-                        </tr>
-                        <tr>
-                            <th>Description</th>
-                            <td>{{ testimonial.description }}</td>
-                        </tr>
-                        <tr>
-                            <th>Picture</th>
-                            <td>{{ testimonial.picture }}</td>
-                        </tr>
-                        <tr>
-                            <th>UpdatedAt</th>
-                            <td>{{ testimonial.updatedAt ? testimonial.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <a href="{{ path('app_dashboard_testimonial_index') }}">back to list</a>
-
-                <a href="{{ path('app_dashboard_testimonial_edit', {'id': testimonial.id}) }}">edit</a>
-
+<div class="gp-card">
+    <div class="row align-items-center">
+        <div class="col-lg-3 text-center">
+            {% if testimonial.picture %}
+                <img src="{{ asset('media/pictures/'~testimonial.picture)|imagine_filter('my_thumb') }}" class="rounded-circle shadow-sm mb-3" style="width: 150px; height: 150px; object-fit: cover;" alt="{{ testimonial.name }}">
+            {% else %}
+                <div class="bg-light rounded-circle mb-3 d-flex align-items-center justify-content-center mx-auto" style="width: 150px; height: 150px;"><i class="bi bi-person text-muted display-1"></i></div>
+            {% endif %}
+            <h4 class="fw-bold mb-0">{{ testimonial.name }}</h4>
+            <span class="badge bg-info text-dark mt-2">{{ testimonial.grade }}</span>
+        </div>
+        <div class="col-lg-9">
+            <div class="p-4 bg-light rounded position-relative">
+                <i class="bi bi-quote text-secondary opacity-25 position-absolute top-0 start-0 m-3" style="font-size: 3rem;"></i>
+                <div class="ms-4">
+                    <p class="fs-5 italic mb-0">{{ testimonial.description }}</p>
+                </div>
+            </div>
+            <div class="mt-4 small text-muted">
+                <span class="me-3">ID: #{{ testimonial.id }}</span>
+                <span>Dernière mise à jour : {{ testimonial.updatedAt ? testimonial.updatedAt|date('d/m/Y à H:i') : 'N/A' }}</span>
+            </div>
+            
+            <div class="mt-4 pt-3 border-top">
                 {{ include('dashboard/testimonial/_delete_form.html.twig') }}
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

@@ -239,29 +239,49 @@
   window.addEventListener("load", () => {
     let portfolioContainer = select(".portfolio-container");
     if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: ".portfolio-item",
-        layoutMode: "fitRows",
+      imagesLoaded(portfolioContainer, function() {
+        let portfolioIsotope = new Isotope(portfolioContainer, {
+          itemSelector: ".portfolio-item",
+          layoutMode: "fitRows",
+        });
+
+        let portfolioFilters = select("#portfolio-flters li", true);
+
+        on(
+          "click",
+          "#portfolio-flters li",
+          function (e) {
+            e.preventDefault();
+
+            // On coupe toutes les transactions JS d'animation pour stabiliser la page
+            document.body.classList.add('filtering-active');
+            
+            // On désactive manuellement AOS sur tous les éléments de la page
+            document.querySelectorAll('[data-aos]').forEach(el => {
+              el.classList.add('aos-animate');
+              el.removeAttribute('data-aos');
+            });
+
+            portfolioFilters.forEach(function (el) {
+              el.classList.remove("filter-active");
+            });
+            this.classList.add("filter-active");
+
+            portfolioIsotope.arrange({
+              filter: this.getAttribute("data-filter"),
+            });
+
+            // Forcer le recalcul de la hauteur et rafraîchir AOS
+            setTimeout(function() {
+              portfolioIsotope.layout();
+              if (window.AOS) {
+                window.AOS.refresh();
+              }
+            }, 400);
+          },
+          true
+        );
       });
-
-      let portfolioFilters = select("#portfolio-flters li", true);
-
-      on(
-        "click",
-        "#portfolio-flters li",
-        function (e) {
-          e.preventDefault();
-          portfolioFilters.forEach(function (el) {
-            el.classList.remove("filter-active");
-          });
-          this.classList.add("filter-active");
-
-          portfolioIsotope.arrange({
-            filter: this.getAttribute("data-filter"),
-          });
-        },
-        true
-      );
     }
   });
 

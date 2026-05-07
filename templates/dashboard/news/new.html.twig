@@ -1,18 +1,20 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboard_base.html.twig' %}
 
-{% block title %}New News{% endblock %}
+{% block title %}Nouvelle Actualité | GP-SEC{% endblock %}
 
-{% block body %}
-    <div class="container u-margin-top-small">
-        <div class="row">
-            <div class="col-md">
-                <h1>Create new News</h1>
+{% block dashboard_body %}
+<div class="dashboard-header">
+    <h1>Publier une Actualité</h1>
+    <p>Partagez les dernières informations de GP-SEC.</p>
+</div>
 
-                {{ include('dashboard/news/_form.html.twig') }}
-
-                <a href="{{ path('app_dashboard_news_index') }}">back to list</a>
-            
-            </div>
-        </div>
+<div class="gp-card">
+    {{ include('dashboard/news/_form.html.twig') }}
+    
+    <div class="mt-4">
+        <a href="{{ path('app_dashboard_news_index') }}" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Retour à la liste
+        </a>
     </div>
+</div>
 {% endblock %}

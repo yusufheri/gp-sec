@@ -1,46 +1,52 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboard_base.html.twig' %}
 
-{% block title %}Slide{% endblock %}
+{% block title %}Slide : {{ slide.title }} | GP-SEC{% endblock %}
 
-{% block body %}
-    <h1>Slide</h1>
+{% block dashboard_body %}
+<div class="dashboard-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1>Aperçu du Slide</h1>
+        <p>Visualisation de l'image de la bannière d'accueil.</p>
+    </div>
+    <div>
+        <a href="{{ path('app_dashboard_slide_index') }}" class="btn btn-outline-secondary me-2">
+            <i class="bi bi-arrow-left"></i> Retour
+        </a>
+        <a href="{{ path('app_dashboard_slide_edit', {'id': slide.id}) }}" class="btn btn-danger">
+            <i class="bi bi-pencil-square me-1"></i> Modifier
+        </a>
+    </div>
+</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ slide.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ slide.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ slide.description }}</td>
-            </tr>
-            <tr>
-                <th>UrlButton</th>
-                <td>{{ slide.urlButton }}</td>
-            </tr>
-            <tr>
-                <th>TextButton</th>
-                <td>{{ slide.textButton }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ slide.picture }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ slide.updatedAt ? slide.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="gp-card">
+    <div class="mb-4">
+        <label class="text-muted small d-block mb-2">Image du Slide</label>
+        {% if slide.picture %}
+            <img src="{{ asset('media/pictures/'~slide.picture) }}" class="img-fluid rounded shadow-sm w-100" style="max-height: 400px; object-fit: cover;" alt="{{ slide.title }}">
+        {% else %}
+            <div class="bg-light rounded mb-3 d-flex align-items-center justify-content-center" style="height: 300px;"><i class="bi bi-image text-muted display-1"></i></div>
+        {% endif %}
+    </div>
 
-    <a href="{{ path('app_dashboard_slide_index') }}">back to list</a>
-
-    <a href="{{ path('app_dashboard_slide_edit', {'id': slide.id}) }}">edit</a>
-
-    {{ include('dashboard/slide/_delete_form.html.twig') }}
+    <div class="row mt-5">
+        <div class="col-md-8">
+            <h2 class="fw-bold text-primary">{{ slide.title }}</h2>
+            <p class="fs-5 text-muted mb-4">{{ slide.description }}</p>
+            
+            <div class="p-3 bg-light rounded d-inline-block border">
+                <span class="text-muted small d-block mb-1">Bouton d'action</span>
+                <a href="{{ slide.urlButton }}" target="_blank" class="btn btn-danger">
+                    {{ slide.textButton|default('En savoir plus') }}
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 text-end">
+            <div class="small text-muted mb-4">
+                ID: #{{ slide.id }}<br>
+                Mise à jour : {{ slide.updatedAt ? slide.updatedAt|date('d/m/Y à H:i') : 'N/A' }}
+            </div>
+            {{ include('dashboard/slide/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
 {% endblock %}
