@@ -274,12 +274,11 @@ section {
 .btn, .btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
-  padding: 8px 16px;
+  padding: 11px 15px !important;
   display: inline-block;
   border-radius: 100px;
   transition: all 0.2s;
   position: relative;
-  white-space: nowrap;
   border: none;
   cursor: pointer;
 }
@@ -332,10 +331,6 @@ section {
 .btn--animated {
   animation: moveInBottom 0.5s ease-out 0.75s;
   animation-fill-mode: backwards; /* Permet à cette animation, de se derouler à la fin de toutes autres animations */
-}
-.btn-sm {
-  padding: 5px 12px;
-  font-size: 0.85rem;
 }
 
 .btn-text:link, .btn-text:visited {
@@ -3115,4 +3110,4 @@ section {
   padding: 0;
 }
 
-/*# sourceMappingURL=app.css.map */
+/*# sourceMappingURL=test-output.css.map */
